@@ -3,9 +3,11 @@ package states;
 import serv.Services;
 import states.mart.MartState;
 import states.menu.MenuState;
+import states.racecard.RaceCardState;
 import states.races.RaceSate;
 import states.ranch.RanchState;
 import states.title.TitleState;
+import states.raceover.RaceOverState;
 
 /**
  * @author Nick Ivens
@@ -32,8 +34,12 @@ class StateFactory
 			return new RanchState(services);
 		case MART:
 			return new MartState(services);
-		case RACES:
+		case RACE:
 			return new RaceSate(services);
+		case RACE_OVER:
+			return new RaceOverState(services);
+		case RACE_CARD:
+			return new RaceCardState(services);
 		}
 	}
 }

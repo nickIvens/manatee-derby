@@ -67,7 +67,7 @@ class MenuState extends State
 	
 	private function handleBtnRaces(e:MouseEvent):Void 
 	{
-		super.callNewState(StateEnum.RACES);
+		super.callNewState(StateEnum.RACE_CARD);
 	}
 	
 	//overrides

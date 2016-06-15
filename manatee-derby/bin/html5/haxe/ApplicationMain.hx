@@ -42,11 +42,27 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("img/btn_watch.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/manatee.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("img/mart_bg.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
 		urls.push ("img/menu_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/racecard_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/raceover_bg.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -126,7 +142,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "80",
+			build: "181",
 			company: "Nick Ivens",
 			file: "manatee-derby",
 			fps: 60,

@@ -29,9 +29,17 @@ ApplicationMain.create = function() {
 	types.push("IMAGE");
 	urls.push("img/btn_ranch.png");
 	types.push("IMAGE");
+	urls.push("img/btn_watch.png");
+	types.push("IMAGE");
+	urls.push("img/manatee.png");
+	types.push("IMAGE");
 	urls.push("img/mart_bg.png");
 	types.push("IMAGE");
 	urls.push("img/menu_bg.png");
+	types.push("IMAGE");
+	urls.push("img/racecard_bg.png");
+	types.push("IMAGE");
+	urls.push("img/raceover_bg.png");
 	types.push("IMAGE");
 	urls.push("img/races_bg.png");
 	types.push("IMAGE");
@@ -63,7 +71,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "80", company : "Nick Ivens", file : "manatee-derby", fps : 60, name : "manatee-derby", orientation : "", packageName : "manatee-derby", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 540, parameters : "{}", resizable : true, stencilBuffer : true, title : "manatee-derby", vsync : false, width : 960, x : null, y : null}]};
+	ApplicationMain.config = { build : "181", company : "Nick Ivens", file : "manatee-derby", fps : 60, name : "manatee-derby", orientation : "", packageName : "manatee-derby", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 540, parameters : "{}", resizable : true, stencilBuffer : true, title : "manatee-derby", vsync : false, width : 960, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -1275,10 +1283,22 @@ var DefaultAssetLibrary = function() {
 	id = "img/btn_ranch.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
+	id = "img/btn_watch.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/manatee.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/mart_bg.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/menu_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/racecard_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/raceover_bg.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/races_bg.png";
@@ -1543,6 +1563,9 @@ List.prototype = {
 	,__class__: List
 };
 var Manatee = function(gndr) {
+	this.surNames = ["Stark","Jones","Waterman","Seaworth","Styles","Olsen","Kent","the Rocket"];
+	this.femaleNames = ["Mel","Anna","Sarah","Judy","Martha","Cutie Pie","Hannah"];
+	this.maleNames = ["Ned","Clive","Fins","Wet Bob","Dave","Cuthbert","Fred"];
 	this.gender = gndr;
 	this.initVars();
 };
@@ -1550,6 +1573,40 @@ $hxClasses["Manatee"] = Manatee;
 Manatee.__name__ = ["Manatee"];
 Manatee.prototype = {
 	initVars: function() {
+		if(this.gender == "male") this.name = this.maleNames[Math.floor(Math.random() * this.maleNames.length)];
+		if(this.gender == "female") this.name = this.femaleNames[Math.floor(Math.random() * this.femaleNames.length)];
+		this.name = this.name + " " + this.surNames[Math.floor(Math.random() * this.surNames.length)];
+		this.masterStamina = Math.floor(Math.random() * 120 + 120);
+		this.masterSleepiness = Math.floor(Math.random() * 60 + 60);
+		this.currentStamina = this.newStamina();
+		this.currentSleepiness = this.newSleepiness();
+		this.distTravelled = 0;
+	}
+	,newStamina: function() {
+		return Math.floor(Math.random() * 120 + (this.masterStamina - 60));
+	}
+	,newSleepiness: function() {
+		return Math.floor(Math.random() * 120 + (this.masterSleepiness - 60));
+	}
+	,update: function() {
+		if(this.currentStamina > 0) {
+			this.distTravelled++;
+			this.currentStamina--;
+		}
+		if(this.currentStamina == 0) this.currentSleepiness--;
+		if(this.currentSleepiness == 0) {
+			this.currentStamina = this.newStamina();
+			this.currentSleepiness = this.newSleepiness();
+		}
+	}
+	,reset: function() {
+		this.distTravelled = 0;
+	}
+	,distanceTravelled: function() {
+		return this.distTravelled;
+	}
+	,getName: function() {
+		return this.name;
 	}
 	,__class__: Manatee
 };
@@ -14110,6 +14167,74 @@ lime_utils_CompressionAlgorithm.LZMA.__enum__ = lime_utils_CompressionAlgorithm;
 lime_utils_CompressionAlgorithm.GZIP = ["GZIP",3];
 lime_utils_CompressionAlgorithm.GZIP.toString = $estr;
 lime_utils_CompressionAlgorithm.GZIP.__enum__ = lime_utils_CompressionAlgorithm;
+var lime_utils__$DataView_DataView_$Impl_$ = {};
+$hxClasses["lime.utils._DataView.DataView_Impl_"] = lime_utils__$DataView_DataView_$Impl_$;
+lime_utils__$DataView_DataView_$Impl_$.__name__ = ["lime","utils","_DataView","DataView_Impl_"];
+lime_utils__$DataView_DataView_$Impl_$._new = function(buffer,byteOffset,byteLength) {
+	var this1;
+	if(byteOffset != null && byteLength == null) this1 = new DataView(buffer,byteOffset); else if(byteOffset != null && byteLength != null) this1 = new DataView(buffer,byteOffset,byteLength); else this1 = new DataView(buffer);
+	return this1;
+};
+lime_utils__$DataView_DataView_$Impl_$.getInt8 = function(this1,byteOffset) {
+	return this1.getInt8(byteOffset);
+};
+lime_utils__$DataView_DataView_$Impl_$.getInt16 = function(this1,byteOffset,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	return this1.getInt16(byteOffset,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.getInt32 = function(this1,byteOffset,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	return this1.getInt32(byteOffset,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.getUint8 = function(this1,byteOffset) {
+	return this1.getUint8(byteOffset);
+};
+lime_utils__$DataView_DataView_$Impl_$.getUint16 = function(this1,byteOffset,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	return this1.getUint16(byteOffset,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.getUint32 = function(this1,byteOffset,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	return this1.getUint32(byteOffset,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.getFloat32 = function(this1,byteOffset,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	return this1.getFloat32(byteOffset,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.getFloat64 = function(this1,byteOffset,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	return this1.getFloat64(byteOffset,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.setInt8 = function(this1,byteOffset,value) {
+	this1.setInt8(byteOffset,value);
+};
+lime_utils__$DataView_DataView_$Impl_$.setInt16 = function(this1,byteOffset,value,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	this1.setInt16(byteOffset,value,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.setInt32 = function(this1,byteOffset,value,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	this1.setInt32(byteOffset,value,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.setUint8 = function(this1,byteOffset,value) {
+	this1.setUint8(byteOffset,value);
+};
+lime_utils__$DataView_DataView_$Impl_$.setUint16 = function(this1,byteOffset,value,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	this1.setUint16(byteOffset,value,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.setUint32 = function(this1,byteOffset,value,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	this1.setUint32(byteOffset,value,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.setFloat32 = function(this1,byteOffset,value,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	this1.setFloat32(byteOffset,value,littleEndian);
+};
+lime_utils__$DataView_DataView_$Impl_$.setFloat64 = function(this1,byteOffset,value,littleEndian) {
+	if(littleEndian == null) littleEndian = true;
+	this1.setFloat64(byteOffset,value,littleEndian);
+};
 var lime_utils__$Float32Array_Float32Array_$Impl_$ = {};
 $hxClasses["lime.utils._Float32Array.Float32Array_Impl_"] = lime_utils__$Float32Array_Float32Array_$Impl_$;
 lime_utils__$Float32Array_Float32Array_$Impl_$.__name__ = ["lime","utils","_Float32Array","Float32Array_Impl_"];
@@ -33806,18 +33931,28 @@ var serv_Artwork = function() {
 	this.artMap = new haxe_ds_StringMap();
 	var value = openfl_Assets.getBitmapData("img/title_bg.png");
 	this.artMap.set("title_bg",value);
-	var value1 = openfl_Assets.getBitmapData("img/btn_ranch.png");
-	this.artMap.set("btn_ranch",value1);
-	var value2 = openfl_Assets.getBitmapData("img/btn_mart.png");
-	this.artMap.set("btn_mart",value2);
-	var value3 = openfl_Assets.getBitmapData("img/btn_races.png");
-	this.artMap.set("btn_races",value3);
-	var value4 = openfl_Assets.getBitmapData("img/ranch_bg.png");
-	this.artMap.set("ranch_bg",value4);
-	var value5 = openfl_Assets.getBitmapData("img/mart_bg.png");
-	this.artMap.set("mart_bg",value5);
-	var value6 = openfl_Assets.getBitmapData("img/races_bg.png");
-	this.artMap.set("races_bg",value6);
+	var value1 = openfl_Assets.getBitmapData("img/menu_bg.png");
+	this.artMap.set("menu_bg",value1);
+	var value2 = openfl_Assets.getBitmapData("img/btn_ranch.png");
+	this.artMap.set("btn_ranch",value2);
+	var value3 = openfl_Assets.getBitmapData("img/btn_mart.png");
+	this.artMap.set("btn_mart",value3);
+	var value4 = openfl_Assets.getBitmapData("img/btn_races.png");
+	this.artMap.set("btn_races",value4);
+	var value5 = openfl_Assets.getBitmapData("img/ranch_bg.png");
+	this.artMap.set("ranch_bg",value5);
+	var value6 = openfl_Assets.getBitmapData("img/mart_bg.png");
+	this.artMap.set("mart_bg",value6);
+	var value7 = openfl_Assets.getBitmapData("img/races_bg.png");
+	this.artMap.set("races_bg",value7);
+	var value8 = openfl_Assets.getBitmapData("img/raceover_bg.png");
+	this.artMap.set("raceover_bg",value8);
+	var value9 = openfl_Assets.getBitmapData("img/racecard_bg.png");
+	this.artMap.set("racecard_bg",value9);
+	var value10 = openfl_Assets.getBitmapData("img/manatee.png");
+	this.artMap.set("manatee",value10);
+	var value11 = openfl_Assets.getBitmapData("img/btn_watch.png");
+	this.artMap.set("btn_watch",value11);
 };
 $hxClasses["serv.Artwork"] = serv_Artwork;
 serv_Artwork.__name__ = ["serv","Artwork"];
@@ -33829,8 +33964,6 @@ serv_Artwork.prototype = {
 };
 var serv_Audio = function() {
 	this.audioMap = new haxe_ds_StringMap();
-	var value = openfl_Assets.getMusic("sound/title_bg.ogg");
-	this.audioMap.set("title_bg",value);
 };
 $hxClasses["serv.Audio"] = serv_Audio;
 serv_Audio.__name__ = ["serv","Audio"];
@@ -33839,6 +33972,47 @@ serv_Audio.prototype = {
 		return this.audioMap.get(name);
 	}
 	,__class__: serv_Audio
+};
+var serv_Data = function() {
+	this.initVars();
+};
+$hxClasses["serv.Data"] = serv_Data;
+serv_Data.__name__ = ["serv","Data"];
+serv_Data.prototype = {
+	initVars: function() {
+		this.cash = 1000;
+		this.day = 1;
+		this.racers = [];
+		this.winner = new Manatee("male");
+	}
+	,selectRacers: function() {
+		this.racers = [];
+		var _g = 0;
+		while(_g < 4) {
+			var i = _g++;
+			var number = Math.floor(Math.random() * 20);
+			if(HxOverrides.indexOf(this.racers,number,0) == -1) this.racers.push(number);
+		}
+	}
+	,nextDay: function() {
+		this.day++;
+	}
+	,getDay: function() {
+		return this.day;
+	}
+	,getCash: function() {
+		return this.cash;
+	}
+	,getRacers: function() {
+		return this.racers;
+	}
+	,getWinner: function() {
+		return this.winner;
+	}
+	,setWinner: function(win) {
+		this.winner = win;
+	}
+	,__class__: serv_Data
 };
 var serv_ManateePool = function() {
 	this.initVars();
@@ -33849,13 +34023,13 @@ serv_ManateePool.prototype = {
 	initVars: function() {
 		this.pool = [];
 		var _g = 0;
-		while(_g < 9) {
+		while(_g < 10) {
 			var i = _g++;
 			var m = new Manatee("male");
 			this.pool.push(m);
 		}
 		var _g1 = 0;
-		while(_g1 < 9) {
+		while(_g1 < 10) {
 			var i1 = _g1++;
 			var m1 = new Manatee("female");
 			this.pool.push(m1);
@@ -33866,9 +34040,10 @@ serv_ManateePool.prototype = {
 	}
 	,__class__: serv_ManateePool
 };
-var serv_Services = function(art,aud,pool) {
+var serv_Services = function(art,aud,gamedata,pool) {
 	this.artwork = art;
 	this.manatees = pool;
+	this.data = gamedata;
 	this.audio = aud;
 };
 $hxClasses["serv.Services"] = serv_Services;
@@ -33879,6 +34054,9 @@ serv_Services.prototype = {
 	}
 	,getAudio: function() {
 		return this.audio;
+	}
+	,getData: function() {
+		return this.data;
 	}
 	,getManatees: function() {
 		return this.manatees;
@@ -33897,8 +34075,9 @@ src_Game.prototype = $extend(openfl_display_Sprite.prototype,{
 		this.removeEventListener(openfl_events_Event.ADDED_TO_STAGE,$bind(this,this.init));
 		var artwork = new serv_Artwork();
 		var audio = new serv_Audio();
+		var data = new serv_Data();
 		var manateePool = new serv_ManateePool();
-		var services = new serv_Services(artwork,audio,manateePool);
+		var services = new serv_Services(artwork,audio,data,manateePool);
 		var manager = new states_StateManager(services);
 		this.addEventListener(openfl_events_Event.ENTER_FRAME,$bind(manager,manager.update));
 		this.addChild(manager);
@@ -33926,7 +34105,7 @@ states_State.prototype = $extend(openfl_display_Sprite.prototype,{
 	}
 	,__class__: states_State
 });
-var states_StateEnum = $hxClasses["states.StateEnum"] = { __ename__ : true, __constructs__ : ["TITLE","MENU","RANCH","MART","RACES"] };
+var states_StateEnum = $hxClasses["states.StateEnum"] = { __ename__ : true, __constructs__ : ["TITLE","MENU","RANCH","MART","RACE","RACE_OVER","RACE_CARD"] };
 states_StateEnum.TITLE = ["TITLE",0];
 states_StateEnum.TITLE.toString = $estr;
 states_StateEnum.TITLE.__enum__ = states_StateEnum;
@@ -33939,9 +34118,15 @@ states_StateEnum.RANCH.__enum__ = states_StateEnum;
 states_StateEnum.MART = ["MART",3];
 states_StateEnum.MART.toString = $estr;
 states_StateEnum.MART.__enum__ = states_StateEnum;
-states_StateEnum.RACES = ["RACES",4];
-states_StateEnum.RACES.toString = $estr;
-states_StateEnum.RACES.__enum__ = states_StateEnum;
+states_StateEnum.RACE = ["RACE",4];
+states_StateEnum.RACE.toString = $estr;
+states_StateEnum.RACE.__enum__ = states_StateEnum;
+states_StateEnum.RACE_OVER = ["RACE_OVER",5];
+states_StateEnum.RACE_OVER.toString = $estr;
+states_StateEnum.RACE_OVER.__enum__ = states_StateEnum;
+states_StateEnum.RACE_CARD = ["RACE_CARD",6];
+states_StateEnum.RACE_CARD.toString = $estr;
+states_StateEnum.RACE_CARD.__enum__ = states_StateEnum;
 var states_StateFactory = function(srvcs) {
 	this.services = srvcs;
 };
@@ -33960,6 +34145,10 @@ states_StateFactory.prototype = {
 			return new states_mart_MartState(this.services);
 		case 4:
 			return new states_races_RaceSate(this.services);
+		case 5:
+			return new states_raceover_RaceOverState(this.services);
+		case 6:
+			return new states_racecard_RaceCardState(this.services);
 		}
 	}
 	,__class__: states_StateFactory
@@ -34060,7 +34249,7 @@ states_menu_MenuState.prototype = $extend(states_State.prototype,{
 		states_State.prototype.callNewState.call(this,states_StateEnum.RANCH);
 	}
 	,handleBtnRaces: function(e) {
-		states_State.prototype.callNewState.call(this,states_StateEnum.RACES);
+		states_State.prototype.callNewState.call(this,states_StateEnum.RACE_CARD);
 	}
 	,update: function() {
 		states_State.prototype.update.call(this);
@@ -34073,18 +34262,91 @@ states_menu_MenuState.prototype = $extend(states_State.prototype,{
 	}
 	,__class__: states_menu_MenuState
 });
-var states_races_RaceSate = function(srvcs) {
+var states_racecard_RaceCardState = function(srvcs) {
 	states_State.call(this,srvcs);
+	this.initVars();
 	this.initGraphics();
 	this.initEvents();
 };
-$hxClasses["states.races.RaceSate"] = states_races_RaceSate;
-states_races_RaceSate.__name__ = ["states","races","RaceSate"];
-states_races_RaceSate.__super__ = states_State;
-states_races_RaceSate.prototype = $extend(states_State.prototype,{
-	initGraphics: function() {
-		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("races_bg"));
+$hxClasses["states.racecard.RaceCardState"] = states_racecard_RaceCardState;
+states_racecard_RaceCardState.__name__ = ["states","racecard","RaceCardState"];
+states_racecard_RaceCardState.__super__ = states_State;
+states_racecard_RaceCardState.prototype = $extend(states_State.prototype,{
+	initVars: function() {
+		this.services.getData().selectRacers();
+		this.racers = this.services.getData().getRacers();
+	}
+	,initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("racecard_bg"));
 		this.addChild(bg);
+		var lane1Txt = new openfl_text_TextField();
+		this.addChild(lane1Txt);
+		lane1Txt.set_x(100);
+		lane1Txt.set_y(200);
+		lane1Txt.set_width(900);
+		lane1Txt.set_text("Lane 1: " + this.services.getManatees().getManateeByIndex(this.racers[0]).getName());
+		var lane2Txt = new openfl_text_TextField();
+		this.addChild(lane2Txt);
+		lane2Txt.set_x(100);
+		lane2Txt.set_y(250);
+		lane2Txt.set_width(900);
+		lane2Txt.set_text("Lane 2: " + this.services.getManatees().getManateeByIndex(this.racers[1]).getName());
+		var lane3Txt = new openfl_text_TextField();
+		this.addChild(lane3Txt);
+		lane3Txt.set_x(100);
+		lane3Txt.set_y(300);
+		lane3Txt.set_width(900);
+		lane3Txt.set_text("Lane 3: " + this.services.getManatees().getManateeByIndex(this.racers[2]).getName());
+		var lane4Txt = new openfl_text_TextField();
+		this.addChild(lane4Txt);
+		lane4Txt.set_x(100);
+		lane4Txt.set_y(350);
+		lane4Txt.set_width(900);
+		lane4Txt.set_text("Lane 4: " + this.services.getManatees().getManateeByIndex(this.racers[3]).getName());
+		this.buttonWatch = new openfl_display_Sprite();
+		var btnImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_watch"));
+		this.buttonWatch.addChild(btnImg);
+		this.addChild(this.buttonWatch);
+		this.buttonWatch.set_x(640);
+		this.buttonWatch.set_y(400);
+	}
+	,initEvents: function() {
+		this.buttonWatch.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnWatch));
+	}
+	,handleBtnWatch: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.RACE);
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnWatch));
+	}
+	,__class__: states_racecard_RaceCardState
+});
+var states_raceover_RaceOverState = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initVars();
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.raceover.RaceOverState"] = states_raceover_RaceOverState;
+states_raceover_RaceOverState.__name__ = ["states","raceover","RaceOverState"];
+states_raceover_RaceOverState.__super__ = states_State;
+states_raceover_RaceOverState.prototype = $extend(states_State.prototype,{
+	initVars: function() {
+		this.services.getData().nextDay();
+	}
+	,initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("raceover_bg"));
+		this.addChild(bg);
+		var txt = new openfl_text_TextField();
+		txt.set_width(900);
+		this.addChild(txt);
+		txt.set_x(100);
+		txt.set_y(200);
+		txt.set_text("The winner of this race was " + this.services.getData().getWinner().getName());
 	}
 	,initEvents: function() {
 		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
@@ -34098,6 +34360,81 @@ states_races_RaceSate.prototype = $extend(states_State.prototype,{
 	,unload: function() {
 		states_State.prototype.unload.call(this);
 		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,__class__: states_raceover_RaceOverState
+});
+var states_races_RaceSate = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initVars();
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.races.RaceSate"] = states_races_RaceSate;
+states_races_RaceSate.__name__ = ["states","races","RaceSate"];
+states_races_RaceSate.__super__ = states_State;
+states_races_RaceSate.prototype = $extend(states_State.prototype,{
+	initVars: function() {
+		this.racers = this.services.getData().getRacers();
+	}
+	,initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("races_bg"));
+		this.addChild(bg);
+		var racerImg = new openfl_display_Bitmap(this.services.getArt().getByName("manatee"));
+		this.racer1 = new openfl_display_Sprite();
+		this.racer1.addChild(racerImg);
+		this.addChild(this.racer1);
+		this.racer1.set_y(60);
+		racerImg = new openfl_display_Bitmap(this.services.getArt().getByName("manatee"));
+		this.racer2 = new openfl_display_Sprite();
+		this.racer2.addChild(racerImg);
+		this.addChild(this.racer2);
+		this.racer2.set_y(180);
+		racerImg = new openfl_display_Bitmap(this.services.getArt().getByName("manatee"));
+		this.racer3 = new openfl_display_Sprite();
+		this.racer3.addChild(racerImg);
+		this.addChild(this.racer3);
+		this.racer3.set_y(300);
+		racerImg = new openfl_display_Bitmap(this.services.getArt().getByName("manatee"));
+		this.racer4 = new openfl_display_Sprite();
+		this.racer4.addChild(racerImg);
+		this.addChild(this.racer4);
+		this.racer4.set_y(420);
+	}
+	,initEvents: function() {
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+		var _g = 0;
+		var _g1 = this.racers;
+		while(_g < _g1.length) {
+			var racer = _g1[_g];
+			++_g;
+			this.services.getManatees().getManateeByIndex(racer).update();
+		}
+		this.racer1.set_x(this.services.getManatees().getManateeByIndex(this.racers[0]).distanceTravelled());
+		this.racer2.set_x(this.services.getManatees().getManateeByIndex(this.racers[1]).distanceTravelled());
+		this.racer3.set_x(this.services.getManatees().getManateeByIndex(this.racers[2]).distanceTravelled());
+		this.racer4.set_x(this.services.getManatees().getManateeByIndex(this.racers[3]).distanceTravelled());
+		var _g2 = 0;
+		var _g11 = this.racers;
+		while(_g2 < _g11.length) {
+			var racer1 = _g11[_g2];
+			++_g2;
+			if(this.services.getManatees().getManateeByIndex(racer1).distanceTravelled() >= 960 - this.racer1.get_width()) {
+				this.services.getData().setWinner(this.services.getManatees().getManateeByIndex(racer1));
+				this.callNewState(states_StateEnum.RACE_OVER);
+			}
+		}
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		var _g = 0;
+		var _g1 = this.racers;
+		while(_g < _g1.length) {
+			var i = _g1[_g];
+			++_g;
+			this.services.getManatees().getManateeByIndex(i).reset();
+		}
 	}
 	,__class__: states_races_RaceSate
 });
@@ -34150,8 +34487,6 @@ states_title_TitleState.prototype = $extend(states_State.prototype,{
 		states_State.prototype.callNewState.call(this,states_StateEnum.MENU);
 	}
 	,startBGMusic: function() {
-		this.bgMusic = this.services.getAudio().getByName("title_bg");
-		this.bgMusic.play();
 	}
 	,update: function() {
 		states_State.prototype.update.call(this);
@@ -34159,7 +34494,6 @@ states_title_TitleState.prototype = $extend(states_State.prototype,{
 	,unload: function() {
 		states_State.prototype.unload.call(this);
 		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
-		this.bgMusic.close();
 	}
 	,__class__: states_title_TitleState
 });
