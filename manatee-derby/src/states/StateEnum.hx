@@ -10,5 +10,7 @@ enum StateEnum
 	MENU;
 	RANCH;
 	MART;
-	RACES;
+	RACE;
+	RACE_OVER;
+	RACE_CARD;
 }

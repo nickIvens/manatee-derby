@@ -18,11 +18,11 @@ class ManateePool
 	{
 		pool = new Array<Manatee>();
 		
-		for (i in 0...9) {
+		for (i in 0...10) {
 			var m:Manatee = new Manatee("male");
 			pool.push(m);
 		}
-		for (i in 0...9) {
+		for (i in 0...10) {
 			var m:Manatee = new Manatee("female");
 			pool.push(m);
 		}
