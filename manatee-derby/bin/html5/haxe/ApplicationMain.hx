@@ -30,8 +30,40 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("img/btn_mart.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/btn_races.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/btn_ranch.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/mart_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/menu_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/races_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/ranch_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("img/title_bg.png");
 		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("sound/title_bg.ogg");
+		types.push (lime.Assets.AssetType.MUSIC);
 		
 		
 		
@@ -94,7 +126,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "11",
+			build: "80",
 			company: "Nick Ivens",
 			file: "manatee-derby",
 			fps: 60,

@@ -23,8 +23,24 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.create(ApplicationMain.config);
 	var urls = [];
 	var types = [];
+	urls.push("img/btn_mart.png");
+	types.push("IMAGE");
+	urls.push("img/btn_races.png");
+	types.push("IMAGE");
+	urls.push("img/btn_ranch.png");
+	types.push("IMAGE");
+	urls.push("img/mart_bg.png");
+	types.push("IMAGE");
+	urls.push("img/menu_bg.png");
+	types.push("IMAGE");
+	urls.push("img/races_bg.png");
+	types.push("IMAGE");
+	urls.push("img/ranch_bg.png");
+	types.push("IMAGE");
 	urls.push("img/title_bg.png");
 	types.push("IMAGE");
+	urls.push("sound/title_bg.ogg");
+	types.push("MUSIC");
 	if(ApplicationMain.config.assetsPrefix != null) {
 		var _g1 = 0;
 		var _g = urls.length;
@@ -47,7 +63,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "11", company : "Nick Ivens", file : "manatee-derby", fps : 60, name : "manatee-derby", orientation : "", packageName : "manatee-derby", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 540, parameters : "{}", resizable : true, stencilBuffer : true, title : "manatee-derby", vsync : false, width : 960, x : null, y : null}]};
+	ApplicationMain.config = { build : "80", company : "Nick Ivens", file : "manatee-derby", fps : 60, name : "manatee-derby", orientation : "", packageName : "manatee-derby", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 540, parameters : "{}", resizable : true, stencilBuffer : true, title : "manatee-derby", vsync : false, width : 960, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -1250,9 +1266,33 @@ var DefaultAssetLibrary = function() {
 	this.className = new haxe_ds_StringMap();
 	lime_AssetLibrary.call(this);
 	var id;
+	id = "img/btn_mart.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/btn_races.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/btn_ranch.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/mart_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/menu_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/races_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/ranch_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/title_bg.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
+	id = "sound/title_bg.ogg";
+	this.path.set(id,id);
+	this.type.set(id,"MUSIC");
 	var assetsPrefix = null;
 	if(ApplicationMain.config != null && Object.prototype.hasOwnProperty.call(ApplicationMain.config,"assetsPrefix")) assetsPrefix = ApplicationMain.config.assetsPrefix;
 	if(assetsPrefix != null) {
@@ -1501,6 +1541,17 @@ List.prototype = {
 		return x;
 	}
 	,__class__: List
+};
+var Manatee = function(gndr) {
+	this.gender = gndr;
+	this.initVars();
+};
+$hxClasses["Manatee"] = Manatee;
+Manatee.__name__ = ["Manatee"];
+Manatee.prototype = {
+	initVars: function() {
+	}
+	,__class__: Manatee
 };
 Math.__name__ = ["Math"];
 var NMEPreloader = function() {
@@ -33755,6 +33806,18 @@ var serv_Artwork = function() {
 	this.artMap = new haxe_ds_StringMap();
 	var value = openfl_Assets.getBitmapData("img/title_bg.png");
 	this.artMap.set("title_bg",value);
+	var value1 = openfl_Assets.getBitmapData("img/btn_ranch.png");
+	this.artMap.set("btn_ranch",value1);
+	var value2 = openfl_Assets.getBitmapData("img/btn_mart.png");
+	this.artMap.set("btn_mart",value2);
+	var value3 = openfl_Assets.getBitmapData("img/btn_races.png");
+	this.artMap.set("btn_races",value3);
+	var value4 = openfl_Assets.getBitmapData("img/ranch_bg.png");
+	this.artMap.set("ranch_bg",value4);
+	var value5 = openfl_Assets.getBitmapData("img/mart_bg.png");
+	this.artMap.set("mart_bg",value5);
+	var value6 = openfl_Assets.getBitmapData("img/races_bg.png");
+	this.artMap.set("races_bg",value6);
 };
 $hxClasses["serv.Artwork"] = serv_Artwork;
 serv_Artwork.__name__ = ["serv","Artwork"];
@@ -33764,14 +33827,61 @@ serv_Artwork.prototype = {
 	}
 	,__class__: serv_Artwork
 };
-var serv_Services = function(art) {
+var serv_Audio = function() {
+	this.audioMap = new haxe_ds_StringMap();
+	var value = openfl_Assets.getMusic("sound/title_bg.ogg");
+	this.audioMap.set("title_bg",value);
+};
+$hxClasses["serv.Audio"] = serv_Audio;
+serv_Audio.__name__ = ["serv","Audio"];
+serv_Audio.prototype = {
+	getByName: function(name) {
+		return this.audioMap.get(name);
+	}
+	,__class__: serv_Audio
+};
+var serv_ManateePool = function() {
+	this.initVars();
+};
+$hxClasses["serv.ManateePool"] = serv_ManateePool;
+serv_ManateePool.__name__ = ["serv","ManateePool"];
+serv_ManateePool.prototype = {
+	initVars: function() {
+		this.pool = [];
+		var _g = 0;
+		while(_g < 9) {
+			var i = _g++;
+			var m = new Manatee("male");
+			this.pool.push(m);
+		}
+		var _g1 = 0;
+		while(_g1 < 9) {
+			var i1 = _g1++;
+			var m1 = new Manatee("female");
+			this.pool.push(m1);
+		}
+	}
+	,getManateeByIndex: function(i) {
+		return this.pool[i];
+	}
+	,__class__: serv_ManateePool
+};
+var serv_Services = function(art,aud,pool) {
 	this.artwork = art;
+	this.manatees = pool;
+	this.audio = aud;
 };
 $hxClasses["serv.Services"] = serv_Services;
 serv_Services.__name__ = ["serv","Services"];
 serv_Services.prototype = {
 	getArt: function() {
 		return this.artwork;
+	}
+	,getAudio: function() {
+		return this.audio;
+	}
+	,getManatees: function() {
+		return this.manatees;
 	}
 	,__class__: serv_Services
 };
@@ -33786,7 +33896,9 @@ src_Game.prototype = $extend(openfl_display_Sprite.prototype,{
 	init: function(e) {
 		this.removeEventListener(openfl_events_Event.ADDED_TO_STAGE,$bind(this,this.init));
 		var artwork = new serv_Artwork();
-		var services = new serv_Services(artwork);
+		var audio = new serv_Audio();
+		var manateePool = new serv_ManateePool();
+		var services = new serv_Services(artwork,audio,manateePool);
 		var manager = new states_StateManager(services);
 		this.addEventListener(openfl_events_Event.ENTER_FRAME,$bind(manager,manager.update));
 		this.addChild(manager);
@@ -33814,10 +33926,22 @@ states_State.prototype = $extend(openfl_display_Sprite.prototype,{
 	}
 	,__class__: states_State
 });
-var states_StateEnum = $hxClasses["states.StateEnum"] = { __ename__ : true, __constructs__ : ["TITLE"] };
+var states_StateEnum = $hxClasses["states.StateEnum"] = { __ename__ : true, __constructs__ : ["TITLE","MENU","RANCH","MART","RACES"] };
 states_StateEnum.TITLE = ["TITLE",0];
 states_StateEnum.TITLE.toString = $estr;
 states_StateEnum.TITLE.__enum__ = states_StateEnum;
+states_StateEnum.MENU = ["MENU",1];
+states_StateEnum.MENU.toString = $estr;
+states_StateEnum.MENU.__enum__ = states_StateEnum;
+states_StateEnum.RANCH = ["RANCH",2];
+states_StateEnum.RANCH.toString = $estr;
+states_StateEnum.RANCH.__enum__ = states_StateEnum;
+states_StateEnum.MART = ["MART",3];
+states_StateEnum.MART.toString = $estr;
+states_StateEnum.MART.__enum__ = states_StateEnum;
+states_StateEnum.RACES = ["RACES",4];
+states_StateEnum.RACES.toString = $estr;
+states_StateEnum.RACES.__enum__ = states_StateEnum;
 var states_StateFactory = function(srvcs) {
 	this.services = srvcs;
 };
@@ -33825,7 +33949,18 @@ $hxClasses["states.StateFactory"] = states_StateFactory;
 states_StateFactory.__name__ = ["states","StateFactory"];
 states_StateFactory.prototype = {
 	getState: function(state) {
-		return new states_title_TitleState(this.services);
+		switch(state[1]) {
+		case 0:
+			return new states_title_TitleState(this.services);
+		case 1:
+			return new states_menu_MenuState(this.services);
+		case 2:
+			return new states_ranch_RanchState(this.services);
+		case 3:
+			return new states_mart_MartState(this.services);
+		case 4:
+			return new states_races_RaceSate(this.services);
+		}
 	}
 	,__class__: states_StateFactory
 };
@@ -33858,10 +33993,147 @@ states_StateManager.prototype = $extend(openfl_display_Sprite.prototype,{
 	}
 	,__class__: states_StateManager
 });
+var states_mart_MartState = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.mart.MartState"] = states_mart_MartState;
+states_mart_MartState.__name__ = ["states","mart","MartState"];
+states_mart_MartState.__super__ = states_State;
+states_mart_MartState.prototype = $extend(states_State.prototype,{
+	initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("mart_bg"));
+		this.addChild(bg);
+	}
+	,initEvents: function() {
+		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,handleClick: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.MENU);
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,__class__: states_mart_MartState
+});
+var states_menu_MenuState = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.menu.MenuState"] = states_menu_MenuState;
+states_menu_MenuState.__name__ = ["states","menu","MenuState"];
+states_menu_MenuState.__super__ = states_State;
+states_menu_MenuState.prototype = $extend(states_State.prototype,{
+	initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("menu_bg"));
+		this.addChild(bg);
+		this.buttonRanch = new openfl_display_Sprite();
+		var btnImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_ranch"));
+		this.buttonRanch.addChild(btnImg);
+		this.addChild(this.buttonRanch);
+		this.buttonMart = new openfl_display_Sprite();
+		btnImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_mart"));
+		this.buttonMart.addChild(btnImg);
+		this.addChild(this.buttonMart);
+		this.buttonMart.set_x(320);
+		this.buttonRaces = new openfl_display_Sprite();
+		var btnImg1 = new openfl_display_Bitmap(this.services.getArt().getByName("btn_races"));
+		this.buttonRaces.addChild(btnImg1);
+		this.addChild(this.buttonRaces);
+		this.buttonRaces.set_x(640);
+	}
+	,initEvents: function() {
+		this.buttonRanch.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnRanch));
+		this.buttonMart.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnMart));
+		this.buttonRaces.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnRaces));
+	}
+	,handleBtnMart: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.MART);
+	}
+	,handleBtnRanch: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.RANCH);
+	}
+	,handleBtnRaces: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.RACES);
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		this.buttonRanch.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnRanch));
+		this.buttonMart.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnMart));
+		this.buttonRaces.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnRaces));
+	}
+	,__class__: states_menu_MenuState
+});
+var states_races_RaceSate = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.races.RaceSate"] = states_races_RaceSate;
+states_races_RaceSate.__name__ = ["states","races","RaceSate"];
+states_races_RaceSate.__super__ = states_State;
+states_races_RaceSate.prototype = $extend(states_State.prototype,{
+	initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("races_bg"));
+		this.addChild(bg);
+	}
+	,initEvents: function() {
+		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,handleClick: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.MENU);
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,__class__: states_races_RaceSate
+});
+var states_ranch_RanchState = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.ranch.RanchState"] = states_ranch_RanchState;
+states_ranch_RanchState.__name__ = ["states","ranch","RanchState"];
+states_ranch_RanchState.__super__ = states_State;
+states_ranch_RanchState.prototype = $extend(states_State.prototype,{
+	initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("ranch_bg"));
+		this.addChild(bg);
+	}
+	,initEvents: function() {
+		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,handleClick: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.MENU);
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,__class__: states_ranch_RanchState
+});
 var states_title_TitleState = function(srvcs) {
 	states_State.call(this,srvcs);
 	this.initGraphics();
 	this.initEvents();
+	this.startBGMusic();
 };
 $hxClasses["states.title.TitleState"] = states_title_TitleState;
 states_title_TitleState.__name__ = ["states","title","TitleState"];
@@ -33872,12 +34144,22 @@ states_title_TitleState.prototype = $extend(states_State.prototype,{
 		this.addChild(bg);
 	}
 	,initEvents: function() {
+		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,handleClick: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.MENU);
+	}
+	,startBGMusic: function() {
+		this.bgMusic = this.services.getAudio().getByName("title_bg");
+		this.bgMusic.play();
 	}
 	,update: function() {
 		states_State.prototype.update.call(this);
 	}
 	,unload: function() {
 		states_State.prototype.unload.call(this);
+		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+		this.bgMusic.close();
 	}
 	,__class__: states_title_TitleState
 });

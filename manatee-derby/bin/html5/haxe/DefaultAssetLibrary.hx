@@ -54,21 +54,77 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
+		className.set ("img/btn_mart.png", __ASSET__img_btn_mart_png);
+		type.set ("img/btn_mart.png", AssetType.IMAGE);
+		className.set ("img/btn_races.png", __ASSET__img_btn_races_png);
+		type.set ("img/btn_races.png", AssetType.IMAGE);
+		className.set ("img/btn_ranch.png", __ASSET__img_btn_ranch_png);
+		type.set ("img/btn_ranch.png", AssetType.IMAGE);
+		className.set ("img/mart_bg.png", __ASSET__img_mart_bg_png);
+		type.set ("img/mart_bg.png", AssetType.IMAGE);
+		className.set ("img/menu_bg.png", __ASSET__img_menu_bg_png);
+		type.set ("img/menu_bg.png", AssetType.IMAGE);
+		className.set ("img/races_bg.png", __ASSET__img_races_bg_png);
+		type.set ("img/races_bg.png", AssetType.IMAGE);
+		className.set ("img/ranch_bg.png", __ASSET__img_ranch_bg_png);
+		type.set ("img/ranch_bg.png", AssetType.IMAGE);
 		className.set ("img/title_bg.png", __ASSET__img_title_bg_png);
 		type.set ("img/title_bg.png", AssetType.IMAGE);
+		className.set ("sound/title_bg.ogg", __ASSET__sound_title_bg_ogg);
+		type.set ("sound/title_bg.ogg", AssetType.MUSIC);
 		
 		
 		#elseif html5
 		
 		var id;
+		id = "img/btn_mart.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/btn_races.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/btn_ranch.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/mart_bg.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/menu_bg.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/races_bg.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/ranch_bg.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "img/title_bg.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "sound/title_bg.ogg";
+		path.set (id, id);
+		
+		type.set (id, AssetType.MUSIC);
 		
 		
 		var assetsPrefix = null;
@@ -87,8 +143,32 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		var useManifest = false;
 		
+		className.set ("img/btn_mart.png", __ASSET__img_btn_mart_png);
+		type.set ("img/btn_mart.png", AssetType.IMAGE);
+		
+		className.set ("img/btn_races.png", __ASSET__img_btn_races_png);
+		type.set ("img/btn_races.png", AssetType.IMAGE);
+		
+		className.set ("img/btn_ranch.png", __ASSET__img_btn_ranch_png);
+		type.set ("img/btn_ranch.png", AssetType.IMAGE);
+		
+		className.set ("img/mart_bg.png", __ASSET__img_mart_bg_png);
+		type.set ("img/mart_bg.png", AssetType.IMAGE);
+		
+		className.set ("img/menu_bg.png", __ASSET__img_menu_bg_png);
+		type.set ("img/menu_bg.png", AssetType.IMAGE);
+		
+		className.set ("img/races_bg.png", __ASSET__img_races_bg_png);
+		type.set ("img/races_bg.png", AssetType.IMAGE);
+		
+		className.set ("img/ranch_bg.png", __ASSET__img_ranch_bg_png);
+		type.set ("img/ranch_bg.png", AssetType.IMAGE);
+		
 		className.set ("img/title_bg.png", __ASSET__img_title_bg_png);
 		type.set ("img/title_bg.png", AssetType.IMAGE);
+		
+		className.set ("sound/title_bg.ogg", __ASSET__sound_title_bg_ogg);
+		type.set ("sound/title_bg.ogg", AssetType.MUSIC);
 		
 		
 		if (useManifest) {
@@ -807,10 +887,26 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if !display
 #if flash
 
+@:keep @:bind #if display private #end class __ASSET__img_btn_mart_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_btn_races_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_btn_ranch_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_mart_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_menu_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_races_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_ranch_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_title_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__sound_title_bg_ogg extends null { }
 
 
 #elseif html5
+
+
+
+
+
+
+
+
 
 
 
@@ -822,7 +918,15 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if (windows || mac || linux || cpp)
 
 
+@:image("assets/img/btn_mart.png") #if display private #end class __ASSET__img_btn_mart_png extends lime.graphics.Image {}
+@:image("assets/img/btn_races.png") #if display private #end class __ASSET__img_btn_races_png extends lime.graphics.Image {}
+@:image("assets/img/btn_ranch.png") #if display private #end class __ASSET__img_btn_ranch_png extends lime.graphics.Image {}
+@:image("assets/img/mart_bg.png") #if display private #end class __ASSET__img_mart_bg_png extends lime.graphics.Image {}
+@:image("assets/img/menu_bg.png") #if display private #end class __ASSET__img_menu_bg_png extends lime.graphics.Image {}
+@:image("assets/img/races_bg.png") #if display private #end class __ASSET__img_races_bg_png extends lime.graphics.Image {}
+@:image("assets/img/ranch_bg.png") #if display private #end class __ASSET__img_ranch_bg_png extends lime.graphics.Image {}
 @:image("assets/img/title_bg.png") #if display private #end class __ASSET__img_title_bg_png extends lime.graphics.Image {}
+@:file("assets/sound/title_bg.ogg") #if display private #end class __ASSET__sound_title_bg_ogg extends lime.utils.ByteArray {}
 
 
 
