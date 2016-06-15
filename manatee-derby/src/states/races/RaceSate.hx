@@ -23,7 +23,7 @@ class RaceSate extends State
 		initEvents();
 	}
 	
-	private var racers:Array<Int>;
+	private var racers:Array<Manatee>;
 	
 	private function initVars():Void
 	{
@@ -75,16 +75,16 @@ class RaceSate extends State
 	{
 		super.update();
 		for (racer in racers) {
-			services.getManatees().getManateeByIndex(racer).update();
+			racer.update();
 		}
-		racer1.x = services.getManatees().getManateeByIndex(racers[0]).distanceTravelled();
-		racer2.x = services.getManatees().getManateeByIndex(racers[1]).distanceTravelled();
-		racer3.x = services.getManatees().getManateeByIndex(racers[2]).distanceTravelled();
-		racer4.x = services.getManatees().getManateeByIndex(racers[3]).distanceTravelled();
+		racer1.x = racers[0].distanceTravelled();
+		racer2.x = racers[1].distanceTravelled();
+		racer3.x = racers[2].distanceTravelled();
+		racer4.x = racers[3].distanceTravelled();
 		
 		for (racer in racers) {
-			if (services.getManatees().getManateeByIndex(racer).distanceTravelled() >= 960 - racer1.width) {
-				services.getData().setWinner(services.getManatees().getManateeByIndex(racer));
+			if (racer.distanceTravelled() >= 960 - racer1.width) {
+				services.getData().setWinner(racer);
 				callNewState(StateEnum.RACE_OVER);
 			};
 		}
@@ -93,9 +93,10 @@ class RaceSate extends State
 	override public function unload():Void 
 	{
 		super.unload();
-		for (i in racers) {
-			services.getManatees().getManateeByIndex(i).reset();
+		for (racer in racers) {
+			racer.reset();
 		}
+		services.getData().clearRacers();
 	}
 	
 	//accessors

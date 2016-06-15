@@ -75,7 +75,7 @@ class MenuState extends State
 	
 	private function handleBtnRaces(e:MouseEvent):Void 
 	{
-		services.getData().selectRacers(services.getManatees().count());
+		services.getData().selectRacers(services.getManatees().manateePool());
 		super.callNewState(StateEnum.RACE_CARD);
 	}
 	

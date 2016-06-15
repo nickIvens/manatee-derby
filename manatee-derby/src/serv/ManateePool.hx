@@ -38,7 +38,17 @@ class ManateePool
 		pool.splice(index, 1);
 	}
 	
+	public function moveToPool(manatee:Manatee, ownedList:Array<Manatee>):Void
+	{
+		var index:Int = ownedList.indexOf(manatee);
+		var tempManatee:Manatee = ownedList[index];
+		
+		pool.push(tempManatee);
+		ownedList.splice(index, 1);
+	}
+		
 	//accessors
 	public function getManateeByIndex(i:Int):Manatee { return pool[i]; }
 	public function count():Int { return pool.length; }
+	public function manateePool():Array<Manatee> { return pool; }
 }

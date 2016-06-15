@@ -22,7 +22,7 @@ class RaceCardState extends State
 		initEvents();
 	}
 	
-	private var racers:Array<Int>;
+	private var racers:Array<Manatee>;
 	
 	private function initVars():Void
 	{
@@ -42,28 +42,28 @@ class RaceCardState extends State
 		lane1Txt.x = 100;
 		lane1Txt.y = 200;
 		lane1Txt.width = 900;
-		lane1Txt.text = "Lane 1: " + services.getManatees().getManateeByIndex(racers[0]).getName();
+		lane1Txt.text = "Lane 1: " + racers[0].getName();
 		
 		var lane2Txt:TextField = new TextField();
 		addChild(lane2Txt);
 		lane2Txt.x = 100;
 		lane2Txt.y = 250;
 		lane2Txt.width = 900;
-		lane2Txt.text = "Lane 2: " + services.getManatees().getManateeByIndex(racers[1]).getName();
+		lane2Txt.text = "Lane 2: " + racers[1].getName();
 		
 		var lane3Txt:TextField = new TextField();
 		addChild(lane3Txt);
 		lane3Txt.x = 100;
 		lane3Txt.y = 300;
 		lane3Txt.width = 900;
-		lane3Txt.text = "Lane 3: " + services.getManatees().getManateeByIndex(racers[2]).getName();
+		lane3Txt.text = "Lane 3: " + racers[2].getName();
 		
 		var lane4Txt:TextField = new TextField();
 		addChild(lane4Txt);
 		lane4Txt.x = 100;
 		lane4Txt.y = 350;
 		lane4Txt.width = 900;
-		lane4Txt.text = "Lane 4: " + services.getManatees().getManateeByIndex(racers[3]).getName();
+		lane4Txt.text = "Lane 4: " + racers[3].getName();
 		
 		var betsTxt:TextField = new TextField();
 		addChild(betsTxt);
