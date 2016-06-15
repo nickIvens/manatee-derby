@@ -66,10 +66,31 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		#end
 		
 		#if flash
 		
+		className.set ("img/arrowL.png", __ASSET__img_arrowl_png);
+		type.set ("img/arrowL.png", AssetType.IMAGE);
+		className.set ("img/arrowR.png", __ASSET__img_arrowr_png);
+		type.set ("img/arrowR.png", AssetType.IMAGE);
+		className.set ("img/btn_back.png", __ASSET__img_btn_back_png);
+		type.set ("img/btn_back.png", AssetType.IMAGE);
+		className.set ("img/btn_bet.png", __ASSET__img_btn_bet_png);
+		type.set ("img/btn_bet.png", AssetType.IMAGE);
+		className.set ("img/btn_buy.png", __ASSET__img_btn_buy_png);
+		type.set ("img/btn_buy.png", AssetType.IMAGE);
 		className.set ("img/btn_mart.png", __ASSET__img_btn_mart_png);
 		type.set ("img/btn_mart.png", AssetType.IMAGE);
 		className.set ("img/btn_races.png", __ASSET__img_btn_races_png);
@@ -78,12 +99,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 		type.set ("img/btn_ranch.png", AssetType.IMAGE);
 		className.set ("img/btn_watch.png", __ASSET__img_btn_watch_png);
 		type.set ("img/btn_watch.png", AssetType.IMAGE);
+		className.set ("img/confirmbuy_bg.png", __ASSET__img_confirmbuy_bg_png);
+		type.set ("img/confirmbuy_bg.png", AssetType.IMAGE);
 		className.set ("img/manatee.png", __ASSET__img_manatee_png);
 		type.set ("img/manatee.png", AssetType.IMAGE);
+		className.set ("img/manatee1.png", __ASSET__img_manatee1_png);
+		type.set ("img/manatee1.png", AssetType.IMAGE);
+		className.set ("img/manatee2.png", __ASSET__img_manatee2_png);
+		type.set ("img/manatee2.png", AssetType.IMAGE);
+		className.set ("img/manatee3.png", __ASSET__img_manatee3_png);
+		type.set ("img/manatee3.png", AssetType.IMAGE);
+		className.set ("img/manatee4.png", __ASSET__img_manatee4_png);
+		type.set ("img/manatee4.png", AssetType.IMAGE);
 		className.set ("img/mart_bg.png", __ASSET__img_mart_bg_png);
 		type.set ("img/mart_bg.png", AssetType.IMAGE);
 		className.set ("img/menu_bg.png", __ASSET__img_menu_bg_png);
 		type.set ("img/menu_bg.png", AssetType.IMAGE);
+		className.set ("img/placebet_bg.png", __ASSET__img_placebet_bg_png);
+		type.set ("img/placebet_bg.png", AssetType.IMAGE);
 		className.set ("img/racecard_bg.png", __ASSET__img_racecard_bg_png);
 		type.set ("img/racecard_bg.png", AssetType.IMAGE);
 		className.set ("img/raceover_bg.png", __ASSET__img_raceover_bg_png);
@@ -101,6 +134,26 @@ class DefaultAssetLibrary extends AssetLibrary {
 		#elseif html5
 		
 		var id;
+		id = "img/arrowL.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/arrowR.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/btn_back.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/btn_bet.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/btn_buy.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "img/btn_mart.png";
 		path.set (id, id);
 		
@@ -117,7 +170,27 @@ class DefaultAssetLibrary extends AssetLibrary {
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
+		id = "img/confirmbuy_bg.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
 		id = "img/manatee.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/manatee1.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/manatee2.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/manatee3.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/manatee4.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -126,6 +199,10 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		type.set (id, AssetType.IMAGE);
 		id = "img/menu_bg.png";
+		path.set (id, id);
+		
+		type.set (id, AssetType.IMAGE);
+		id = "img/placebet_bg.png";
 		path.set (id, id);
 		
 		type.set (id, AssetType.IMAGE);
@@ -171,6 +248,21 @@ class DefaultAssetLibrary extends AssetLibrary {
 		
 		var useManifest = false;
 		
+		className.set ("img/arrowL.png", __ASSET__img_arrowl_png);
+		type.set ("img/arrowL.png", AssetType.IMAGE);
+		
+		className.set ("img/arrowR.png", __ASSET__img_arrowr_png);
+		type.set ("img/arrowR.png", AssetType.IMAGE);
+		
+		className.set ("img/btn_back.png", __ASSET__img_btn_back_png);
+		type.set ("img/btn_back.png", AssetType.IMAGE);
+		
+		className.set ("img/btn_bet.png", __ASSET__img_btn_bet_png);
+		type.set ("img/btn_bet.png", AssetType.IMAGE);
+		
+		className.set ("img/btn_buy.png", __ASSET__img_btn_buy_png);
+		type.set ("img/btn_buy.png", AssetType.IMAGE);
+		
 		className.set ("img/btn_mart.png", __ASSET__img_btn_mart_png);
 		type.set ("img/btn_mart.png", AssetType.IMAGE);
 		
@@ -183,14 +275,32 @@ class DefaultAssetLibrary extends AssetLibrary {
 		className.set ("img/btn_watch.png", __ASSET__img_btn_watch_png);
 		type.set ("img/btn_watch.png", AssetType.IMAGE);
 		
+		className.set ("img/confirmbuy_bg.png", __ASSET__img_confirmbuy_bg_png);
+		type.set ("img/confirmbuy_bg.png", AssetType.IMAGE);
+		
 		className.set ("img/manatee.png", __ASSET__img_manatee_png);
 		type.set ("img/manatee.png", AssetType.IMAGE);
+		
+		className.set ("img/manatee1.png", __ASSET__img_manatee1_png);
+		type.set ("img/manatee1.png", AssetType.IMAGE);
+		
+		className.set ("img/manatee2.png", __ASSET__img_manatee2_png);
+		type.set ("img/manatee2.png", AssetType.IMAGE);
+		
+		className.set ("img/manatee3.png", __ASSET__img_manatee3_png);
+		type.set ("img/manatee3.png", AssetType.IMAGE);
+		
+		className.set ("img/manatee4.png", __ASSET__img_manatee4_png);
+		type.set ("img/manatee4.png", AssetType.IMAGE);
 		
 		className.set ("img/mart_bg.png", __ASSET__img_mart_bg_png);
 		type.set ("img/mart_bg.png", AssetType.IMAGE);
 		
 		className.set ("img/menu_bg.png", __ASSET__img_menu_bg_png);
 		type.set ("img/menu_bg.png", AssetType.IMAGE);
+		
+		className.set ("img/placebet_bg.png", __ASSET__img_placebet_bg_png);
+		type.set ("img/placebet_bg.png", AssetType.IMAGE);
 		
 		className.set ("img/racecard_bg.png", __ASSET__img_racecard_bg_png);
 		type.set ("img/racecard_bg.png", AssetType.IMAGE);
@@ -927,13 +1037,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if !display
 #if flash
 
+@:keep @:bind #if display private #end class __ASSET__img_arrowl_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_arrowr_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_btn_back_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_btn_bet_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_btn_buy_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_btn_mart_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_btn_races_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_btn_ranch_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_btn_watch_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_confirmbuy_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_manatee_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_manatee1_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_manatee2_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_manatee3_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_manatee4_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_mart_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_menu_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
+@:keep @:bind #if display private #end class __ASSET__img_placebet_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_racecard_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_raceover_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
 @:keep @:bind #if display private #end class __ASSET__img_races_bg_png extends flash.display.BitmapData { public function new () { super (0, 0, true, 0); } }
@@ -959,6 +1080,17 @@ class DefaultAssetLibrary extends AssetLibrary {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 #else
 
 
@@ -966,13 +1098,24 @@ class DefaultAssetLibrary extends AssetLibrary {
 #if (windows || mac || linux || cpp)
 
 
+@:image("assets/img/arrowL.png") #if display private #end class __ASSET__img_arrowl_png extends lime.graphics.Image {}
+@:image("assets/img/arrowR.png") #if display private #end class __ASSET__img_arrowr_png extends lime.graphics.Image {}
+@:image("assets/img/btn_back.png") #if display private #end class __ASSET__img_btn_back_png extends lime.graphics.Image {}
+@:image("assets/img/btn_bet.png") #if display private #end class __ASSET__img_btn_bet_png extends lime.graphics.Image {}
+@:image("assets/img/btn_buy.png") #if display private #end class __ASSET__img_btn_buy_png extends lime.graphics.Image {}
 @:image("assets/img/btn_mart.png") #if display private #end class __ASSET__img_btn_mart_png extends lime.graphics.Image {}
 @:image("assets/img/btn_races.png") #if display private #end class __ASSET__img_btn_races_png extends lime.graphics.Image {}
 @:image("assets/img/btn_ranch.png") #if display private #end class __ASSET__img_btn_ranch_png extends lime.graphics.Image {}
 @:image("assets/img/btn_watch.png") #if display private #end class __ASSET__img_btn_watch_png extends lime.graphics.Image {}
+@:image("assets/img/confirmbuy_bg.png") #if display private #end class __ASSET__img_confirmbuy_bg_png extends lime.graphics.Image {}
 @:image("assets/img/manatee.png") #if display private #end class __ASSET__img_manatee_png extends lime.graphics.Image {}
+@:image("assets/img/manatee1.png") #if display private #end class __ASSET__img_manatee1_png extends lime.graphics.Image {}
+@:image("assets/img/manatee2.png") #if display private #end class __ASSET__img_manatee2_png extends lime.graphics.Image {}
+@:image("assets/img/manatee3.png") #if display private #end class __ASSET__img_manatee3_png extends lime.graphics.Image {}
+@:image("assets/img/manatee4.png") #if display private #end class __ASSET__img_manatee4_png extends lime.graphics.Image {}
 @:image("assets/img/mart_bg.png") #if display private #end class __ASSET__img_mart_bg_png extends lime.graphics.Image {}
 @:image("assets/img/menu_bg.png") #if display private #end class __ASSET__img_menu_bg_png extends lime.graphics.Image {}
+@:image("assets/img/placebet_bg.png") #if display private #end class __ASSET__img_placebet_bg_png extends lime.graphics.Image {}
 @:image("assets/img/racecard_bg.png") #if display private #end class __ASSET__img_racecard_bg_png extends lime.graphics.Image {}
 @:image("assets/img/raceover_bg.png") #if display private #end class __ASSET__img_raceover_bg_png extends lime.graphics.Image {}
 @:image("assets/img/races_bg.png") #if display private #end class __ASSET__img_races_bg_png extends lime.graphics.Image {}

@@ -4,6 +4,7 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
+import openfl.text.TextField;
 import serv.Services;
 import states.State;
 
@@ -46,6 +47,13 @@ class MenuState extends State
 		buttonRaces.addChild(btnImg);
 		addChild(buttonRaces);
 		buttonRaces.x = 640;
+		
+		var txt:TextField = new TextField();
+		addChild(txt);
+		txt.x = 50;
+		txt.y = 520;
+		txt.width = 900;
+		txt.text = "Day: " + services.getData().getDay() + " Cash: $" + services.getData().getCash();
 	}
 	
 	private function initEvents():Void 
@@ -67,6 +75,7 @@ class MenuState extends State
 	
 	private function handleBtnRaces(e:MouseEvent):Void 
 	{
+		services.getData().selectRacers(services.getManatees().count());
 		super.callNewState(StateEnum.RACE_CARD);
 	}
 	

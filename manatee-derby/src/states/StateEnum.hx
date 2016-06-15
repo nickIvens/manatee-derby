@@ -13,4 +13,5 @@ enum StateEnum
 	RACE;
 	RACE_OVER;
 	RACE_CARD;
+	PLACE_BET;
 }

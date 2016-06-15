@@ -21,22 +21,28 @@ class Manatee
 	private var surNames:Array<String> = ["Stark", "Jones", "Waterman", "Seaworth", "Styles", "Olsen", "Kent", "the Rocket"];
 	
 	private var name:String;
+	private var rating:Int;
+	private var imageName:String;
 	private var masterStamina:Int;
 	private var currentStamina:Int;
 	private var masterSleepiness:Int;
 	private var currentSleepiness:Int;
 	private var distTravelled:Float;
 	
-	
 	private function initVars():Void
 	{
 		if (gender == "male") name = maleNames[Math.floor(Math.random() * (maleNames.length))];
 		if (gender == "female") name = femaleNames[Math.floor(Math.random() * (femaleNames.length))];
 		name = name + " " + surNames[Math.floor(Math.random() * (surNames.length))];
+		
+		imageName = "manatee" + Math.floor(Math.random() * 4 + 1);
+		
 		masterStamina = Math.floor(Math.random() * 120 + 120);
-		masterSleepiness = Math.floor(Math.random() * 60 + 60);
+		masterSleepiness = Math.floor(Math.random() * 120 + 120);
+		rating = masterStamina - masterSleepiness;
 		currentStamina = newStamina();
 		currentSleepiness = newSleepiness();
+		
 		distTravelled = 0;
 	}
 	
@@ -47,7 +53,7 @@ class Manatee
 	
 	private function newSleepiness():Int
 	{
-		return Math.floor(Math.random() * 120 + (masterSleepiness - 60));
+		return Math.floor(Math.random() * 120 + (masterSleepiness));
 	}
 	
 	public function update():Void
@@ -73,4 +79,6 @@ class Manatee
 	//accessors
 	public function distanceTravelled():Float { return distTravelled; }
 	public function getName():String { return name; }
+	public function getImageName():String { return imageName; }
+	public function getRating():Int { return rating; }
 }

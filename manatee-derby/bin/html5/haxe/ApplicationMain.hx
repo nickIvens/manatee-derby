@@ -30,6 +30,26 @@ class ApplicationMain {
 		var types = [];
 		
 		
+		urls.push ("img/arrowL.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/arrowR.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/btn_back.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/btn_bet.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/btn_buy.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("img/btn_mart.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
@@ -46,7 +66,27 @@ class ApplicationMain {
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
+		urls.push ("img/confirmbuy_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
 		urls.push ("img/manatee.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/manatee1.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/manatee2.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/manatee3.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/manatee4.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -55,6 +95,10 @@ class ApplicationMain {
 		
 		
 		urls.push ("img/menu_bg.png");
+		types.push (lime.Assets.AssetType.IMAGE);
+		
+		
+		urls.push ("img/placebet_bg.png");
 		types.push (lime.Assets.AssetType.IMAGE);
 		
 		
@@ -142,7 +186,7 @@ class ApplicationMain {
 		
 		config = {
 			
-			build: "181",
+			build: "274",
 			company: "Nick Ivens",
 			file: "manatee-derby",
 			fps: 60,
