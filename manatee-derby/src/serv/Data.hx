@@ -14,7 +14,7 @@ class Data
 	
 	private var cash:Int;
 	private var day:Int;
-	private var racers:Array<Int>;
+	private var racers:Array<Manatee>;
 	private var owned:Array<Manatee>;
 	private var winner:Manatee;
 	
@@ -22,17 +22,27 @@ class Data
 	{
 		cash = 1000;
 		day = 1;
-		racers = new Array<Int>();
+		racers = new Array<Manatee>();
 		owned = new Array<Manatee>();
 		winner = new Manatee("male");
 	}
 	
-	public function selectRacers(manateePoolLength:Int):Void
+	public function clearRacers():Void
 	{
-		racers = new Array<Int>();
+		racers = new Array<Manatee>();
+	}
+	public function selectRacers(pool:Array<Manatee>):Void
+	{
 		while (racers.length < 4) {
-			var number = Math.floor(Math.random() * manateePoolLength);
-			if (racers.indexOf(number) == -1) racers.push(number);
+			var number = Math.floor(Math.random() * pool.length);
+			if (racers.indexOf(pool[number]) == -1) racers.push(pool[number]);
+		}
+	}
+	
+	public function enterInRace(manatee:Manatee):Void
+	{
+		if(racers.length < 4){
+			racers.push(manatee);
 		}
 	}
 	
@@ -49,7 +59,7 @@ class Data
 	//accessors
 	public function getDay():Int { return day; }
 	public function getCash():Int { return cash; }
-	public function getRacers():Array<Int> { return racers; }
+	public function getRacers():Array<Manatee> { return racers; }
 	public function getWinner():Manatee { return winner; }
 	public function setWinner(win:Manatee):Void { winner = win; }
 	public function ownedManatees():Array<Manatee> { return owned; }

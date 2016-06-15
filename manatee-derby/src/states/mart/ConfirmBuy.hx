@@ -16,7 +16,7 @@ class ConfirmBuy extends Sprite
 	private var services:Services;
 	private var manatee:Manatee;
 	
-	public function new(parent:MartState, srvcs:Services, manateeIndex) 
+	public function new(parent:MartState, srvcs:Services, manateeIndex:Int) 
 	{
 		super();
 		martState = parent;
@@ -31,7 +31,7 @@ class ConfirmBuy extends Sprite
 	
 	private function initGraphics():Void
 	{
-		var bg:Bitmap = new Bitmap(services.getArt().getByName("confirmbuy_bg"));
+		var bg:Bitmap = new Bitmap(services.getArt().getByName("confirm_bg"));
 		addChild(bg);
 		
 		var txt:TextField = new TextField();
@@ -53,7 +53,7 @@ class ConfirmBuy extends Sprite
 			txt.text = "Are you sure you want to buy " + manatee.getName() + "?";
 			
 			buttonYes = new Sprite();
-			var btnYesImg:Bitmap = new Bitmap(services.getArt().getByName("btn_back"));
+			var btnYesImg:Bitmap = new Bitmap(services.getArt().getByName("btn_yes"));
 			buttonYes.addChild(btnYesImg);
 			buttonYes.x = 50;
 			buttonYes.y = 250;
@@ -61,7 +61,7 @@ class ConfirmBuy extends Sprite
 			buttonYes.addEventListener(MouseEvent.CLICK, handleBtnYes);
 			
 			buttonNo = new Sprite();
-			var btnNoImg:Bitmap = new Bitmap(services.getArt().getByName("btn_back"));
+			var btnNoImg:Bitmap = new Bitmap(services.getArt().getByName("btn_no"));
 			buttonNo.addChild(btnNoImg);
 			buttonNo.x = 350;
 			buttonNo.y = 250;
@@ -82,12 +82,14 @@ class ConfirmBuy extends Sprite
 		services.getData().spend(500);
 		services.getManatees().moveToOwned(manatee, services.getData().ownedManatees());
 		martState.refreshLineUp();
+		martState.resetBuying();
 		parent.removeChild(this);
 		buttonYes.removeEventListener(MouseEvent.CLICK, handleBtnYes);
 	}
 	
 	private function handleBtnNo(e:MouseEvent):Void 
 	{
+		martState.resetBuying();
 		parent.removeChild(this);
 		buttonNo.removeEventListener(MouseEvent.CLICK, handleBtnNo);
 	}

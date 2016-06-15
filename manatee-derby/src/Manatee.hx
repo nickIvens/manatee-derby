@@ -16,9 +16,9 @@ class Manatee
 		initVars();
 	}
 	
-	private var maleNames:Array<String> = ["Ned", "Clive", "Fins", "Wet Bob", "Dave", "Cuthbert", "Fred"];
-	private var femaleNames:Array<String> = ["Mel", "Anna", "Sarah", "Judy", "Martha", "Cutie Pie", "Hannah"];
-	private var surNames:Array<String> = ["Stark", "Jones", "Waterman", "Seaworth", "Styles", "Olsen", "Kent", "the Rocket"];
+	private var maleNames:Array<String> = ["Ned", "Clive", "Fins", "Wet Bob", "Dave", "Cuthbert", "Fred", "Maximillian", "Reginald"];
+	private var femaleNames:Array<String> = ["Mel", "Anna", "Marina", "Ariel", "Sandy", "Sarah", "Judy", "Martha", "Cutie Pie", "Hannah"];
+	private var surNames:Array<String> = ["Stark", "Jones", "Waterman", "Seaworth", "Styles", "Olsen", "Kent", "the Rocket", "McGee"];
 	
 	private var name:String;
 	private var rating:Int;
@@ -35,7 +35,7 @@ class Manatee
 		if (gender == "female") name = femaleNames[Math.floor(Math.random() * (femaleNames.length))];
 		name = name + " " + surNames[Math.floor(Math.random() * (surNames.length))];
 		
-		imageName = "manatee" + Math.floor(Math.random() * 4 + 1);
+		imageName = "manatee" + Math.floor(Math.random() * 6 + 1);
 		
 		masterStamina = Math.floor(Math.random() * 120 + 120);
 		masterSleepiness = Math.floor(Math.random() * 120 + 120);
@@ -74,6 +74,16 @@ class Manatee
 	public function reset():Void
 	{
 		distTravelled = 0;
+	}
+	
+	public function feed():Void
+	{
+		masterSleepiness += 5;
+	}
+	
+	public function train():Void
+	{
+		masterStamina += 5;
 	}
 	
 	//accessors

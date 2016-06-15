@@ -92,6 +92,7 @@ class MartState extends State
 		
 		cashTxt = new TextField();
 		addChild(cashTxt);
+		cashTxt.height = 30;
 		cashTxt.x = 220;
 		cashTxt.y = 420;
 		cashTxt.text = "Cash: $" + services.getData().getCash();
@@ -113,7 +114,7 @@ class MartState extends State
 		buttonBack.addEventListener(MouseEvent.CLICK, handleBtnBack);
 	}
 	
-	private function handleBtnLeft(e:MouseEvent):Void 
+	private function handleBtnLeft(e:MouseEvent):Void
 	{
 		if (selection > 0) selection--;
 		refreshManatee();
@@ -125,12 +126,22 @@ class MartState extends State
 		refreshManatee();
 	}
 	
+	private var buying:Bool = false;
+	
 	private function handleBtnBuy(e:MouseEvent):Void 
 	{
-		var confirm:ConfirmBuy = new ConfirmBuy(this, services, forSale[selection]);
-		addChild(confirm);
-		confirm.x = 100;
-		confirm.y = 100;
+		if(!buying){
+			var confirm:ConfirmBuy = new ConfirmBuy(this, services, forSale[selection]);
+			addChild(confirm);
+			confirm.x = 100;
+			confirm.y = 100;
+			buying = true;
+		}
+	}
+	
+	public function resetBuying():Void
+	{
+		buying =  false;
 	}
 	
 	private function handleBtnBack(e:MouseEvent):Void 
