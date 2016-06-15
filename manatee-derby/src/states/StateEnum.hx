@@ -7,4 +7,8 @@ package states;
 enum StateEnum 
 {
 	TITLE;
+	MENU;
+	RANCH;
+	MART;
+	RACES;
 }
