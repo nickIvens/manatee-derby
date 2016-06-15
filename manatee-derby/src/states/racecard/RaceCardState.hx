@@ -26,11 +26,11 @@ class RaceCardState extends State
 	
 	private function initVars():Void
 	{
-		services.getData().selectRacers();
 		racers = services.getData().getRacers();
 	}
 	
 	private var buttonWatch:Sprite;
+	private var buttonBet:Sprite;
 	
 	private function initGraphics():Void 
 	{
@@ -65,17 +65,37 @@ class RaceCardState extends State
 		lane4Txt.width = 900;
 		lane4Txt.text = "Lane 4: " + services.getManatees().getManateeByIndex(racers[3]).getName();
 		
+		var betsTxt:TextField = new TextField();
+		addChild(betsTxt);
+		betsTxt.x = 100;
+		betsTxt.y = 450;
+		betsTxt.width = 900;
+		betsTxt.text = "Details of bets goes here";
+		
 		buttonWatch = new Sprite();
 		var btnImg:Bitmap = new Bitmap(services.getArt().getByName("btn_watch"));
 		buttonWatch.addChild(btnImg);
 		addChild(buttonWatch);
 		buttonWatch.x = 640;
 		buttonWatch.y = 400;
+		
+		buttonBet = new Sprite();
+		btnImg = new Bitmap(services.getArt().getByName("btn_bet"));
+		buttonBet.addChild(btnImg);
+		addChild(buttonBet);
+		buttonBet.x = 150;
+		buttonBet.y = 470;
 	}
 	
 	private function initEvents():Void 
 	{
 		buttonWatch.addEventListener(MouseEvent.CLICK, handleBtnWatch);
+		buttonBet.addEventListener(MouseEvent.CLICK, handleBtnBet);
+	}
+	
+	private function handleBtnBet(e:MouseEvent):Void 
+	{
+		super.callNewState(StateEnum.PLACE_BET);
 	}
 	
 	private function handleBtnWatch(e:MouseEvent):Void 

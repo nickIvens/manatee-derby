@@ -3,6 +3,7 @@ package states;
 import serv.Services;
 import states.mart.MartState;
 import states.menu.MenuState;
+import states.placebet.PlaceBetState;
 import states.racecard.RaceCardState;
 import states.races.RaceSate;
 import states.ranch.RanchState;
@@ -40,6 +41,8 @@ class StateFactory
 			return new RaceOverState(services);
 		case RACE_CARD:
 			return new RaceCardState(services);
+		case PLACE_BET:
+			return new PlaceBetState(services);
 		}
 	}
 }

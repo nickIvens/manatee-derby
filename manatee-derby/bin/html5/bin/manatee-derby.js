@@ -23,6 +23,16 @@ ApplicationMain.create = function() {
 	ApplicationMain.preloader.create(ApplicationMain.config);
 	var urls = [];
 	var types = [];
+	urls.push("img/arrowL.png");
+	types.push("IMAGE");
+	urls.push("img/arrowR.png");
+	types.push("IMAGE");
+	urls.push("img/btn_back.png");
+	types.push("IMAGE");
+	urls.push("img/btn_bet.png");
+	types.push("IMAGE");
+	urls.push("img/btn_buy.png");
+	types.push("IMAGE");
 	urls.push("img/btn_mart.png");
 	types.push("IMAGE");
 	urls.push("img/btn_races.png");
@@ -31,11 +41,23 @@ ApplicationMain.create = function() {
 	types.push("IMAGE");
 	urls.push("img/btn_watch.png");
 	types.push("IMAGE");
+	urls.push("img/confirmbuy_bg.png");
+	types.push("IMAGE");
 	urls.push("img/manatee.png");
+	types.push("IMAGE");
+	urls.push("img/manatee1.png");
+	types.push("IMAGE");
+	urls.push("img/manatee2.png");
+	types.push("IMAGE");
+	urls.push("img/manatee3.png");
+	types.push("IMAGE");
+	urls.push("img/manatee4.png");
 	types.push("IMAGE");
 	urls.push("img/mart_bg.png");
 	types.push("IMAGE");
 	urls.push("img/menu_bg.png");
+	types.push("IMAGE");
+	urls.push("img/placebet_bg.png");
 	types.push("IMAGE");
 	urls.push("img/racecard_bg.png");
 	types.push("IMAGE");
@@ -71,7 +93,7 @@ ApplicationMain.init = function() {
 	if(total == 0) ApplicationMain.start();
 };
 ApplicationMain.main = function() {
-	ApplicationMain.config = { build : "181", company : "Nick Ivens", file : "manatee-derby", fps : 60, name : "manatee-derby", orientation : "", packageName : "manatee-derby", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 540, parameters : "{}", resizable : true, stencilBuffer : true, title : "manatee-derby", vsync : false, width : 960, x : null, y : null}]};
+	ApplicationMain.config = { build : "274", company : "Nick Ivens", file : "manatee-derby", fps : 60, name : "manatee-derby", orientation : "", packageName : "manatee-derby", version : "1.0.0", windows : [{ antialiasing : 0, background : 0, borderless : false, depthBuffer : false, display : 0, fullscreen : false, hardware : true, height : 540, parameters : "{}", resizable : true, stencilBuffer : true, title : "manatee-derby", vsync : false, width : 960, x : null, y : null}]};
 };
 ApplicationMain.start = function() {
 	var hasMain = false;
@@ -1274,6 +1296,21 @@ var DefaultAssetLibrary = function() {
 	this.className = new haxe_ds_StringMap();
 	lime_AssetLibrary.call(this);
 	var id;
+	id = "img/arrowL.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/arrowR.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/btn_back.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/btn_bet.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/btn_buy.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/btn_mart.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
@@ -1286,13 +1323,31 @@ var DefaultAssetLibrary = function() {
 	id = "img/btn_watch.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
+	id = "img/confirmbuy_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
 	id = "img/manatee.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/manatee1.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/manatee2.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/manatee3.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/manatee4.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/mart_bg.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/menu_bg.png";
+	this.path.set(id,id);
+	this.type.set(id,"IMAGE");
+	id = "img/placebet_bg.png";
 	this.path.set(id,id);
 	this.type.set(id,"IMAGE");
 	id = "img/racecard_bg.png";
@@ -1576,8 +1631,10 @@ Manatee.prototype = {
 		if(this.gender == "male") this.name = this.maleNames[Math.floor(Math.random() * this.maleNames.length)];
 		if(this.gender == "female") this.name = this.femaleNames[Math.floor(Math.random() * this.femaleNames.length)];
 		this.name = this.name + " " + this.surNames[Math.floor(Math.random() * this.surNames.length)];
+		this.imageName = "manatee" + Math.floor(Math.random() * 4 + 1);
 		this.masterStamina = Math.floor(Math.random() * 120 + 120);
-		this.masterSleepiness = Math.floor(Math.random() * 60 + 60);
+		this.masterSleepiness = Math.floor(Math.random() * 120 + 120);
+		this.rating = this.masterStamina - this.masterSleepiness;
 		this.currentStamina = this.newStamina();
 		this.currentSleepiness = this.newSleepiness();
 		this.distTravelled = 0;
@@ -1586,7 +1643,7 @@ Manatee.prototype = {
 		return Math.floor(Math.random() * 120 + (this.masterStamina - 60));
 	}
 	,newSleepiness: function() {
-		return Math.floor(Math.random() * 120 + (this.masterSleepiness - 60));
+		return Math.floor(Math.random() * 120 + this.masterSleepiness);
 	}
 	,update: function() {
 		if(this.currentStamina > 0) {
@@ -1607,6 +1664,12 @@ Manatee.prototype = {
 	}
 	,getName: function() {
 		return this.name;
+	}
+	,getImageName: function() {
+		return this.imageName;
+	}
+	,getRating: function() {
+		return this.rating;
 	}
 	,__class__: Manatee
 };
@@ -3488,6 +3551,7 @@ lime__$backend_html5_HTML5Renderer.prototype = {
 				this.parent.context = lime_graphics_RenderContext.CANVAS(this.parent.window.backend.canvas.getContext("2d"));
 				this.parent.type = lime_graphics_RendererType.CANVAS;
 			} else {
+				webgl = WebGLDebugUtils.makeDebugContext(webgl);
 				lime_graphics_opengl_GL.context = webgl;
 				this.parent.context = lime_graphics_RenderContext.OPENGL(lime_graphics_opengl_GL.context);
 				this.parent.type = lime_graphics_RendererType.OPENGL;
@@ -15319,24 +15383,29 @@ openfl_Memory._setPositionTemporarily = function(position,action) {
 	return value;
 };
 openfl_Memory.getByte = function(addr) {
+	if(addr < 0 || addr + 1 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	return openfl_Memory.gcRef.data.getInt8(addr);
 };
 openfl_Memory.getDouble = function(addr) {
+	if(addr < 0 || addr + 8 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	return openfl_Memory._setPositionTemporarily(addr,function() {
 		return openfl_Memory.gcRef.readDouble();
 	});
 };
 openfl_Memory.getFloat = function(addr) {
+	if(addr < 0 || addr + 4 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	return openfl_Memory._setPositionTemporarily(addr,function() {
 		return openfl_Memory.gcRef.readFloat();
 	});
 };
 openfl_Memory.getI32 = function(addr) {
+	if(addr < 0 || addr + 4 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	return openfl_Memory._setPositionTemporarily(addr,function() {
 		return openfl_Memory.gcRef.readInt();
 	});
 };
 openfl_Memory.getUI16 = function(addr) {
+	if(addr < 0 || addr + 2 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	return openfl_Memory._setPositionTemporarily(addr,function() {
 		return openfl_Memory.gcRef.readUnsignedShort();
 	});
@@ -15346,24 +15415,29 @@ openfl_Memory.select = function(inBytes) {
 	if(inBytes != null) openfl_Memory.len = inBytes.length; else openfl_Memory.len = 0;
 };
 openfl_Memory.setByte = function(addr,v) {
+	if(addr < 0 || addr + 1 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	openfl_Memory.gcRef.data.setUint8(addr,v);
 };
 openfl_Memory.setDouble = function(addr,v) {
+	if(addr < 0 || addr + 8 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	openfl_Memory._setPositionTemporarily(addr,function() {
 		openfl_Memory.gcRef.writeDouble(v);
 	});
 };
 openfl_Memory.setFloat = function(addr,v) {
+	if(addr < 0 || addr + 4 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	openfl_Memory._setPositionTemporarily(addr,function() {
 		openfl_Memory.gcRef.writeFloat(v);
 	});
 };
 openfl_Memory.setI16 = function(addr,v) {
+	if(addr < 0 || addr + 2 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	openfl_Memory._setPositionTemporarily(addr,function() {
 		openfl_Memory.gcRef.writeUnsignedShort(v);
 	});
 };
 openfl_Memory.setI32 = function(addr,v) {
+	if(addr < 0 || addr + 4 > openfl_Memory.len) throw new js__$Boot_HaxeError("Bad address");
 	openfl_Memory._setPositionTemporarily(addr,function() {
 		openfl_Memory.gcRef.writeInt(v);
 	});
@@ -24189,9 +24263,7 @@ openfl_display_BitmapData.prototype = {
 				while(_g3 < _g2) {
 					var xx = _g3++;
 					position = (width_yy + xx) * 4;
-					pixelValue = openfl_Memory._setPositionTemporarily(position,function() {
-						return openfl_Memory.gcRef.readInt();
-					});
+					pixelValue = openfl_Memory.getI32(position);
 					pixelMask = pixelValue & mask;
 					i = openfl_display_BitmapData.__ucompare(pixelMask,thresholdMask);
 					test = false;
@@ -24253,9 +24325,7 @@ openfl_display_BitmapData.prototype = {
 				while(_g11 < dw) {
 					var xx1 = _g11++;
 					position1 = (xx1 + sx + (yy1 + sy) * sw) * 4;
-					pixelValue1 = openfl_Memory._setPositionTemporarily(canvasMemory + position1,function() {
-						return openfl_Memory.gcRef.readInt();
-					});
+					pixelValue1 = openfl_Memory.getI32(canvasMemory + position1);
 					pixelMask1 = pixelValue1 & mask;
 					i1 = openfl_display_BitmapData.__ucompare(pixelMask1,thresholdMask1);
 					test1 = false;
@@ -33951,8 +34021,30 @@ var serv_Artwork = function() {
 	this.artMap.set("racecard_bg",value9);
 	var value10 = openfl_Assets.getBitmapData("img/manatee.png");
 	this.artMap.set("manatee",value10);
-	var value11 = openfl_Assets.getBitmapData("img/btn_watch.png");
-	this.artMap.set("btn_watch",value11);
+	var value11 = openfl_Assets.getBitmapData("img/manatee1.png");
+	this.artMap.set("manatee1",value11);
+	var value12 = openfl_Assets.getBitmapData("img/manatee2.png");
+	this.artMap.set("manatee2",value12);
+	var value13 = openfl_Assets.getBitmapData("img/manatee3.png");
+	this.artMap.set("manatee3",value13);
+	var value14 = openfl_Assets.getBitmapData("img/manatee4.png");
+	this.artMap.set("manatee4",value14);
+	var value15 = openfl_Assets.getBitmapData("img/btn_watch.png");
+	this.artMap.set("btn_watch",value15);
+	var value16 = openfl_Assets.getBitmapData("img/btn_bet.png");
+	this.artMap.set("btn_bet",value16);
+	var value17 = openfl_Assets.getBitmapData("img/placebet_bg.png");
+	this.artMap.set("placebet_bg",value17);
+	var value18 = openfl_Assets.getBitmapData("img/arrowL.png");
+	this.artMap.set("arrowL",value18);
+	var value19 = openfl_Assets.getBitmapData("img/arrowR.png");
+	this.artMap.set("arrowR",value19);
+	var value20 = openfl_Assets.getBitmapData("img/btn_buy.png");
+	this.artMap.set("btn_buy",value20);
+	var value21 = openfl_Assets.getBitmapData("img/btn_back.png");
+	this.artMap.set("btn_back",value21);
+	var value22 = openfl_Assets.getBitmapData("img/confirmbuy_bg.png");
+	this.artMap.set("confirmbuy_bg",value22);
 };
 $hxClasses["serv.Artwork"] = serv_Artwork;
 serv_Artwork.__name__ = ["serv","Artwork"];
@@ -33983,19 +34075,21 @@ serv_Data.prototype = {
 		this.cash = 1000;
 		this.day = 1;
 		this.racers = [];
+		this.owned = [];
 		this.winner = new Manatee("male");
 	}
-	,selectRacers: function() {
+	,selectRacers: function(manateePoolLength) {
 		this.racers = [];
-		var _g = 0;
-		while(_g < 4) {
-			var i = _g++;
-			var number = Math.floor(Math.random() * 20);
+		while(this.racers.length < 4) {
+			var number = Math.floor(Math.random() * manateePoolLength);
 			if(HxOverrides.indexOf(this.racers,number,0) == -1) this.racers.push(number);
 		}
 	}
 	,nextDay: function() {
 		this.day++;
+	}
+	,spend: function(amount) {
+		this.cash -= amount;
 	}
 	,getDay: function() {
 		return this.day;
@@ -34011,6 +34105,9 @@ serv_Data.prototype = {
 	}
 	,setWinner: function(win) {
 		this.winner = win;
+	}
+	,ownedManatees: function() {
+		return this.owned;
 	}
 	,__class__: serv_Data
 };
@@ -34035,8 +34132,17 @@ serv_ManateePool.prototype = {
 			this.pool.push(m1);
 		}
 	}
+	,moveToOwned: function(manatee,ownedList) {
+		var index = HxOverrides.indexOf(this.pool,manatee,0);
+		var tempManatee = this.pool[index];
+		ownedList.push(tempManatee);
+		this.pool.splice(index,1);
+	}
 	,getManateeByIndex: function(i) {
 		return this.pool[i];
+	}
+	,count: function() {
+		return this.pool.length;
 	}
 	,__class__: serv_ManateePool
 };
@@ -34105,7 +34211,7 @@ states_State.prototype = $extend(openfl_display_Sprite.prototype,{
 	}
 	,__class__: states_State
 });
-var states_StateEnum = $hxClasses["states.StateEnum"] = { __ename__ : true, __constructs__ : ["TITLE","MENU","RANCH","MART","RACE","RACE_OVER","RACE_CARD"] };
+var states_StateEnum = $hxClasses["states.StateEnum"] = { __ename__ : true, __constructs__ : ["TITLE","MENU","RANCH","MART","RACE","RACE_OVER","RACE_CARD","PLACE_BET"] };
 states_StateEnum.TITLE = ["TITLE",0];
 states_StateEnum.TITLE.toString = $estr;
 states_StateEnum.TITLE.__enum__ = states_StateEnum;
@@ -34127,6 +34233,9 @@ states_StateEnum.RACE_OVER.__enum__ = states_StateEnum;
 states_StateEnum.RACE_CARD = ["RACE_CARD",6];
 states_StateEnum.RACE_CARD.toString = $estr;
 states_StateEnum.RACE_CARD.__enum__ = states_StateEnum;
+states_StateEnum.PLACE_BET = ["PLACE_BET",7];
+states_StateEnum.PLACE_BET.toString = $estr;
+states_StateEnum.PLACE_BET.__enum__ = states_StateEnum;
 var states_StateFactory = function(srvcs) {
 	this.services = srvcs;
 };
@@ -34149,6 +34258,8 @@ states_StateFactory.prototype = {
 			return new states_raceover_RaceOverState(this.services);
 		case 6:
 			return new states_racecard_RaceCardState(this.services);
+		case 7:
+			return new states_placebet_PlaceBetState(this.services);
 		}
 	}
 	,__class__: states_StateFactory
@@ -34182,8 +34293,71 @@ states_StateManager.prototype = $extend(openfl_display_Sprite.prototype,{
 	}
 	,__class__: states_StateManager
 });
+var states_mart_ConfirmBuy = function(parent,srvcs,manateeIndex) {
+	openfl_display_Sprite.call(this);
+	this.martState = parent;
+	this.services = srvcs;
+	this.manatee = this.services.getManatees().getManateeByIndex(manateeIndex);
+	this.initGraphics();
+};
+$hxClasses["states.mart.ConfirmBuy"] = states_mart_ConfirmBuy;
+states_mart_ConfirmBuy.__name__ = ["states","mart","ConfirmBuy"];
+states_mart_ConfirmBuy.__super__ = openfl_display_Sprite;
+states_mart_ConfirmBuy.prototype = $extend(openfl_display_Sprite.prototype,{
+	initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("confirmbuy_bg"));
+		this.addChild(bg);
+		var txt = new openfl_text_TextField();
+		txt.set_y(100);
+		txt.set_width(750);
+		if(this.services.getData().getCash() < 500) {
+			txt.set_text("You cannot afford a new manatee");
+			this.buttonBack = new openfl_display_Sprite();
+			var btnImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_back"));
+			this.buttonBack.addChild(btnImg);
+			this.buttonBack.set_x(250);
+			this.buttonBack.set_y(250);
+			this.addChild(this.buttonBack);
+			this.buttonBack.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnBack));
+		} else {
+			txt.set_text("Are you sure you want to buy " + this.manatee.getName() + "?");
+			this.buttonYes = new openfl_display_Sprite();
+			var btnYesImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_back"));
+			this.buttonYes.addChild(btnYesImg);
+			this.buttonYes.set_x(50);
+			this.buttonYes.set_y(250);
+			this.addChild(this.buttonYes);
+			this.buttonYes.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnYes));
+			this.buttonNo = new openfl_display_Sprite();
+			var btnNoImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_back"));
+			this.buttonNo.addChild(btnNoImg);
+			this.buttonNo.set_x(350);
+			this.buttonNo.set_y(250);
+			this.addChild(this.buttonNo);
+			this.buttonNo.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnNo));
+		}
+		this.addChild(txt);
+	}
+	,handleBtnBack: function(e) {
+		this.parent.removeChild(this);
+		this.buttonBack.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnBack));
+	}
+	,handleBtnYes: function(e) {
+		this.services.getData().spend(500);
+		this.services.getManatees().moveToOwned(this.manatee,this.services.getData().ownedManatees());
+		this.martState.refreshLineUp();
+		this.parent.removeChild(this);
+		this.buttonYes.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnYes));
+	}
+	,handleBtnNo: function(e) {
+		this.parent.removeChild(this);
+		this.buttonNo.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnNo));
+	}
+	,__class__: states_mart_ConfirmBuy
+});
 var states_mart_MartState = function(srvcs) {
 	states_State.call(this,srvcs);
+	this.initVars();
 	this.initGraphics();
 	this.initEvents();
 };
@@ -34191,22 +34365,96 @@ $hxClasses["states.mart.MartState"] = states_mart_MartState;
 states_mart_MartState.__name__ = ["states","mart","MartState"];
 states_mart_MartState.__super__ = states_State;
 states_mart_MartState.prototype = $extend(states_State.prototype,{
-	initGraphics: function() {
+	initVars: function() {
+		this.selection = 0;
+		this.forSale = [];
+		while(this.forSale.length < 3) {
+			var number = Math.floor(Math.random() * this.services.getManatees().count());
+			if(HxOverrides.indexOf(this.forSale,number,0) == -1) this.forSale.push(number);
+		}
+	}
+	,initGraphics: function() {
 		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("mart_bg"));
 		this.addChild(bg);
+		this.buttonLeft = new openfl_display_Sprite();
+		var btnLeftImg = new openfl_display_Bitmap(this.services.getArt().getByName("arrowL"));
+		this.buttonLeft.addChild(btnLeftImg);
+		this.addChild(this.buttonLeft);
+		this.buttonLeft.set_x(50);
+		this.buttonLeft.set_y(100);
+		this.buttonRight = new openfl_display_Sprite();
+		var btnRightImg = new openfl_display_Bitmap(this.services.getArt().getByName("arrowR"));
+		this.buttonRight.addChild(btnRightImg);
+		this.addChild(this.buttonRight);
+		this.buttonRight.set_x(810);
+		this.buttonRight.set_y(100);
+		this.buttonBuy = new openfl_display_Sprite();
+		var btnBuyImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_buy"));
+		this.buttonBuy.addChild(btnBuyImg);
+		this.addChild(this.buttonBuy);
+		this.buttonBuy.set_x(250);
+		this.buttonBuy.set_y(450);
+		this.buttonBack = new openfl_display_Sprite();
+		var btnBackImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_back"));
+		this.buttonBack.addChild(btnBackImg);
+		this.addChild(this.buttonBack);
+		this.buttonBack.set_x(550);
+		this.buttonBack.set_y(450);
+		this.manateeImg = new openfl_display_Sprite();
+		this.addChild(this.manateeImg);
+		this.manateeImg.set_x(355);
+		this.manateeImg.set_y(150);
+		this.manateeNameTxt = new openfl_text_TextField();
+		this.manateeNameTxt.set_width(600);
+		this.manateeNameTxt.set_x(200);
+		this.manateeNameTxt.set_y(120);
+		this.addChild(this.manateeNameTxt);
+		this.refreshManatee();
+		this.cashTxt = new openfl_text_TextField();
+		this.addChild(this.cashTxt);
+		this.cashTxt.set_x(220);
+		this.cashTxt.set_y(420);
+		this.cashTxt.set_text("Cash: $" + this.services.getData().getCash());
+	}
+	,refreshManatee: function() {
+		var img = new openfl_display_Bitmap(this.services.getArt().getByName(this.services.getManatees().getManateeByIndex(this.forSale[this.selection]).getImageName()));
+		this.manateeImg.addChild(img);
+		this.manateeNameTxt.set_text(this.services.getManatees().getManateeByIndex(this.forSale[this.selection]).getName());
 	}
 	,initEvents: function() {
-		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+		this.buttonLeft.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnLeft));
+		this.buttonRight.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnRight));
+		this.buttonBuy.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnBuy));
+		this.buttonBack.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnBack));
 	}
-	,handleClick: function(e) {
-		states_State.prototype.callNewState.call(this,states_StateEnum.MENU);
+	,handleBtnLeft: function(e) {
+		if(this.selection > 0) this.selection--;
+		this.refreshManatee();
+	}
+	,handleBtnRight: function(e) {
+		if(this.selection < this.forSale.length - 1) this.selection++;
+		this.refreshManatee();
+	}
+	,handleBtnBuy: function(e) {
+		var confirm = new states_mart_ConfirmBuy(this,this.services,this.forSale[this.selection]);
+		this.addChild(confirm);
+		confirm.set_x(100);
+		confirm.set_y(100);
+	}
+	,handleBtnBack: function(e) {
+		this.callNewState(states_StateEnum.MENU);
+	}
+	,refreshLineUp: function() {
+		this.cashTxt.set_text("Cash: $" + this.services.getData().getCash());
+		this.forSale.splice(this.selection,1);
+		this.selection = 0;
+		this.refreshManatee();
 	}
 	,update: function() {
 		states_State.prototype.update.call(this);
 	}
 	,unload: function() {
 		states_State.prototype.unload.call(this);
-		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
 	}
 	,__class__: states_mart_MartState
 });
@@ -34236,6 +34484,12 @@ states_menu_MenuState.prototype = $extend(states_State.prototype,{
 		this.buttonRaces.addChild(btnImg1);
 		this.addChild(this.buttonRaces);
 		this.buttonRaces.set_x(640);
+		var txt = new openfl_text_TextField();
+		this.addChild(txt);
+		txt.set_x(50);
+		txt.set_y(520);
+		txt.set_width(900);
+		txt.set_text("Day: " + this.services.getData().getDay() + " Cash: $" + this.services.getData().getCash());
 	}
 	,initEvents: function() {
 		this.buttonRanch.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnRanch));
@@ -34249,6 +34503,7 @@ states_menu_MenuState.prototype = $extend(states_State.prototype,{
 		states_State.prototype.callNewState.call(this,states_StateEnum.RANCH);
 	}
 	,handleBtnRaces: function(e) {
+		this.services.getData().selectRacers(this.services.getManatees().count());
 		states_State.prototype.callNewState.call(this,states_StateEnum.RACE_CARD);
 	}
 	,update: function() {
@@ -34262,6 +34517,43 @@ states_menu_MenuState.prototype = $extend(states_State.prototype,{
 	}
 	,__class__: states_menu_MenuState
 });
+var states_placebet_PlaceBetState = function(srvcs) {
+	states_State.call(this,srvcs);
+	this.initVars();
+	this.initGraphics();
+	this.initEvents();
+};
+$hxClasses["states.placebet.PlaceBetState"] = states_placebet_PlaceBetState;
+states_placebet_PlaceBetState.__name__ = ["states","placebet","PlaceBetState"];
+states_placebet_PlaceBetState.__super__ = states_State;
+states_placebet_PlaceBetState.prototype = $extend(states_State.prototype,{
+	initVars: function() {
+	}
+	,initGraphics: function() {
+		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("placebet_bg"));
+		this.addChild(bg);
+		var txt = new openfl_text_TextField();
+		txt.set_width(900);
+		this.addChild(txt);
+		txt.set_x(100);
+		txt.set_y(200);
+		txt.set_text("something");
+	}
+	,initEvents: function() {
+		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,handleClick: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.RACE_CARD);
+	}
+	,update: function() {
+		states_State.prototype.update.call(this);
+	}
+	,unload: function() {
+		states_State.prototype.unload.call(this);
+		this.removeEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
+	}
+	,__class__: states_placebet_PlaceBetState
+});
 var states_racecard_RaceCardState = function(srvcs) {
 	states_State.call(this,srvcs);
 	this.initVars();
@@ -34273,7 +34565,6 @@ states_racecard_RaceCardState.__name__ = ["states","racecard","RaceCardState"];
 states_racecard_RaceCardState.__super__ = states_State;
 states_racecard_RaceCardState.prototype = $extend(states_State.prototype,{
 	initVars: function() {
-		this.services.getData().selectRacers();
 		this.racers = this.services.getData().getRacers();
 	}
 	,initGraphics: function() {
@@ -34303,15 +34594,31 @@ states_racecard_RaceCardState.prototype = $extend(states_State.prototype,{
 		lane4Txt.set_y(350);
 		lane4Txt.set_width(900);
 		lane4Txt.set_text("Lane 4: " + this.services.getManatees().getManateeByIndex(this.racers[3]).getName());
+		var betsTxt = new openfl_text_TextField();
+		this.addChild(betsTxt);
+		betsTxt.set_x(100);
+		betsTxt.set_y(450);
+		betsTxt.set_width(900);
+		betsTxt.set_text("Details of bets goes here");
 		this.buttonWatch = new openfl_display_Sprite();
 		var btnImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_watch"));
 		this.buttonWatch.addChild(btnImg);
 		this.addChild(this.buttonWatch);
 		this.buttonWatch.set_x(640);
 		this.buttonWatch.set_y(400);
+		this.buttonBet = new openfl_display_Sprite();
+		btnImg = new openfl_display_Bitmap(this.services.getArt().getByName("btn_bet"));
+		this.buttonBet.addChild(btnImg);
+		this.addChild(this.buttonBet);
+		this.buttonBet.set_x(150);
+		this.buttonBet.set_y(470);
 	}
 	,initEvents: function() {
 		this.buttonWatch.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnWatch));
+		this.buttonBet.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleBtnBet));
+	}
+	,handleBtnBet: function(e) {
+		states_State.prototype.callNewState.call(this,states_StateEnum.PLACE_BET);
 	}
 	,handleBtnWatch: function(e) {
 		states_State.prototype.callNewState.call(this,states_StateEnum.RACE);
@@ -34450,6 +34757,17 @@ states_ranch_RanchState.prototype = $extend(states_State.prototype,{
 	initGraphics: function() {
 		var bg = new openfl_display_Bitmap(this.services.getArt().getByName("ranch_bg"));
 		this.addChild(bg);
+		var txt = new openfl_text_TextField();
+		this.addChild(txt);
+		txt.set_text("");
+		var _g = 0;
+		var _g1 = this.services.getData().ownedManatees();
+		while(_g < _g1.length) {
+			var m = _g1[_g];
+			++_g;
+			var _g2 = txt;
+			_g2.set_text(_g2.get_text() + (m.getName() + "\n"));
+		}
 	}
 	,initEvents: function() {
 		this.addEventListener(openfl_events_MouseEvent.CLICK,$bind(this,this.handleClick));
@@ -35674,3 +35992,5 @@ openfl_ui_Keyboard.RIGHTBRACKET = 221;
 openfl_ui_Keyboard.QUOTE = 222;
 ApplicationMain.main();
 })(typeof console != "undefined" ? console : {log:function(){}}, typeof window != "undefined" ? window : exports);
+
+//# sourceMappingURL=manatee-derby.js.map
