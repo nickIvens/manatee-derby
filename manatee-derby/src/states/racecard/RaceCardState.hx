@@ -20,13 +20,28 @@ class RaceCardState extends State
 		initVars();
 		initGraphics();
 		initEvents();
+		startBGMusic();
 	}
 	
 	private var racers:Array<Manatee>;
-	
+	private var sortedRacers:Array<Manatee>;
 	private function initVars():Void
 	{
 		racers = services.getData().getRacers();
+		
+		sortedRacers  = new Array<Manatee>();
+		for (manatee in services.getData().getRacers()) {
+			sortedRacers.push(manatee);	
+		}
+		sortedRacers.sort( function(a:Manatee, b:Manatee):Int {
+			if (a.getRating() > b.getRating()) return -1;
+			if (a.getRating() < b.getRating()) return 1;
+			return 0;
+		} );
+		
+		for (i in 0...4) {
+			sortedRacers[i].setOdds(i + 2);
+		}
 	}
 	
 	private var buttonWatch:Sprite;
@@ -70,7 +85,10 @@ class RaceCardState extends State
 		betsTxt.x = 100;
 		betsTxt.y = 450;
 		betsTxt.width = 900;
-		betsTxt.text = "Details of bets goes here";
+		betsTxt.text = "";
+		for (key in services.getData().getBets().keys()) {
+			betsTxt.text += "You have $" + services.getData().getBets().get(key) + " on " + key + "\n";
+		}
 		
 		buttonWatch = new Sprite();
 		var btnImg:Bitmap = new Bitmap(services.getArt().getByName("btn_watch"));
@@ -83,8 +101,8 @@ class RaceCardState extends State
 		btnImg = new Bitmap(services.getArt().getByName("btn_bet"));
 		buttonBet.addChild(btnImg);
 		addChild(buttonBet);
-		buttonBet.x = 150;
-		buttonBet.y = 470;
+		buttonBet.x = 300;
+		buttonBet.y = 420;
 	}
 	
 	private function initEvents():Void 
@@ -101,6 +119,11 @@ class RaceCardState extends State
 	private function handleBtnWatch(e:MouseEvent):Void 
 	{
 		super.callNewState(StateEnum.RACE);
+	}
+	
+	private function startBGMusic():Void
+	{
+		services.getAudio().playSongByName("racecard_bg");
 	}
 	
 	//overrides

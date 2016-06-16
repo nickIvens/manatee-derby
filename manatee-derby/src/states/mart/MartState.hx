@@ -21,6 +21,7 @@ class MartState extends State
 		initVars();
 		initGraphics();
 		initEvents();
+		startBGMusic();
 	}
 	
 	private var forSale:Array<Int>;
@@ -157,6 +158,10 @@ class MartState extends State
 		refreshManatee();
 	}
 	
+	private function startBGMusic():Void
+	{
+		services.getAudio().playSongByName("mart_bg");
+	}
 	//overrides
 	override public function update():Void 
 	{

@@ -4,7 +4,6 @@ import openfl.display.Bitmap;
 import openfl.display.BitmapData;
 import openfl.display.Sprite;
 import openfl.events.MouseEvent;
-import openfl.media.Sound;
 import serv.Services;
 import states.State;
 
@@ -39,12 +38,9 @@ class TitleState extends State
 		super.callNewState(StateEnum.MENU);
 	}
 	
-	private var bgMusic:Sound;
-	
 	private function startBGMusic():Void
 	{
-		//bgMusic = services.getAudio().getByName("title_bg");
-		//bgMusic.play();
+		services.getAudio().playSongByName("title_bg");
 	}
 	
 	//overrides
@@ -57,7 +53,6 @@ class TitleState extends State
 	{
 		super.unload();
 		removeEventListener(MouseEvent.CLICK, handleClick);
-		//bgMusic.close();
 	}
 	
 	//accessors

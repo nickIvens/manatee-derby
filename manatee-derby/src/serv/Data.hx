@@ -17,6 +17,8 @@ class Data
 	private var racers:Array<Manatee>;
 	private var owned:Array<Manatee>;
 	private var winner:Manatee;
+	private var winnerOdds:Int;
+	private var bets:Map<String, Int>;
 	
 	private function initVars():Void
 	{
@@ -25,6 +27,7 @@ class Data
 		racers = new Array<Manatee>();
 		owned = new Array<Manatee>();
 		winner = new Manatee("male");
+		bets = new Map<String, Int>();
 	}
 	
 	public function clearRacers():Void
@@ -56,9 +59,25 @@ class Data
 		cash -= amount;
 	}
 	
+	public function createBet(manateeName:String, bet:Int):Void
+	{
+		if (bets.exists(manateeName)) {
+			var currentbet:Int = bets.get(manateeName);
+			bets.set(manateeName, currentbet + bet);
+		} else {
+			bets.set(manateeName, bet);
+		}
+	}
+	
+	public function clearBets():Void
+	{
+		bets = new Map<String, Int>();
+	}
+	
 	//accessors
 	public function getDay():Int { return day; }
 	public function getCash():Int { return cash; }
+	public function getBets():Map<String, Int> { return bets; }
 	public function getRacers():Array<Manatee> { return racers; }
 	public function getWinner():Manatee { return winner; }
 	public function setWinner(win:Manatee):Void { winner = win; }
