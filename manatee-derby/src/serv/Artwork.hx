@@ -24,6 +24,7 @@ class Artwork
 		artMap.set("raceover_bg", openfl.Assets.getBitmapData("img/raceover_bg.png"));
 		artMap.set("racecard_bg", openfl.Assets.getBitmapData("img/racecard_bg.png"));
 		artMap.set("manatee", openfl.Assets.getBitmapData("img/manatee.png"));
+		artMap.set("manatee_slp", openfl.Assets.getBitmapData("img/manatee_slp.png"));
 		artMap.set("manatee1", openfl.Assets.getBitmapData("img/manatee1.png"));
 		artMap.set("manatee2", openfl.Assets.getBitmapData("img/manatee2.png"));
 		artMap.set("manatee3", openfl.Assets.getBitmapData("img/manatee3.png"));
@@ -49,6 +50,9 @@ class Artwork
 		artMap.set("confirmnomoney_bg", openfl.Assets.getBitmapData("img/confirmnomoney_bg.png"));
 		artMap.set("confirmtrain_bg", openfl.Assets.getBitmapData("img/confirmtrain_bg.png"));
 		artMap.set("no_manatees", openfl.Assets.getBitmapData("img/no_manatees.png"));
+		artMap.set("bet10_btn", openfl.Assets.getBitmapData("img/bet10_btn.png"));
+		artMap.set("bet50_btn", openfl.Assets.getBitmapData("img/bet50_btn.png"));
+		artMap.set("bet100_btn", openfl.Assets.getBitmapData("img/bet100_btn.png"));
 	}
 	
 	public function getByName(name:String):BitmapData

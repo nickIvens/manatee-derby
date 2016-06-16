@@ -20,6 +20,7 @@ class MenuState extends State
 		super(srvcs);
 		initGraphics();
 		initEvents();
+		startBGMusic();
 	}
 	
 	private var buttonRanch:Sprite;
@@ -77,6 +78,11 @@ class MenuState extends State
 	{
 		services.getData().selectRacers(services.getManatees().manateePool());
 		super.callNewState(StateEnum.RACE_CARD);
+	}
+	
+	private function startBGMusic():Void
+	{
+		services.getAudio().playSongByName("menu_bg");
 	}
 	
 	//overrides

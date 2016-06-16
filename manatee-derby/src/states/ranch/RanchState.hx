@@ -20,6 +20,7 @@ class RanchState extends State
 		initVars();
 		initGraphics();
 		initEvents();
+		startBGMusic();
 	}
 	
 	private var manatees:Array<Manatee>;
@@ -130,6 +131,7 @@ class RanchState extends State
 		manateeImg.addChild(img);
 		
 		manateeNameTxt.text = manatees[selection].getName();
+		if (services.getData().getRacers().indexOf(manatees[selection]) != -1) manateeNameTxt.text += "   RACING TODAY!!!";
 	}
 	
 	private function initEvents():Void 
@@ -192,8 +194,11 @@ class RanchState extends State
 	
 	public function enterSelection():Void
 	{
-		services.getData().spend(100);
-		services.getData().enterInRace(manatees[selection]);
+		if (services.getData().getRacers().indexOf(manatees[selection]) == -1) {
+			services.getData().spend(100);
+			services.getData().enterInRace(manatees[selection]);
+			refresh();
+		}
 	}
 	
 	public function resetEnter():Void
@@ -239,6 +244,11 @@ class RanchState extends State
 	public function refresh():Void
 	{
 		callNewState(StateEnum.RANCH);
+	}
+	
+	private function startBGMusic():Void
+	{
+		services.getAudio().playSongByName("ranch_bg");
 	}
 	
 	//overrides

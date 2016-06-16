@@ -16,11 +16,12 @@ class Manatee
 		initVars();
 	}
 	
-	private var maleNames:Array<String> = ["Ned", "Clive", "Fins", "Wet Bob", "Dave", "Cuthbert", "Fred", "Maximillian", "Reginald"];
-	private var femaleNames:Array<String> = ["Mel", "Anna", "Marina", "Ariel", "Sandy", "Sarah", "Judy", "Martha", "Cutie Pie", "Hannah"];
-	private var surNames:Array<String> = ["Stark", "Jones", "Waterman", "Seaworth", "Styles", "Olsen", "Kent", "the Rocket", "McGee"];
+	private var maleNames:Array<String> = ["Ned", "Clive", "Fins", "Wet Bob", "Dave", "Cuthbert", "Fred", "Maximillian", "Reginald", "Caspian", "Clyde", "Deniz"];
+	private var femaleNames:Array<String> = ["Mel", "Anna", "Marina", "Ariel", "Sandy", "Sarah", "Judy", "Martha", "Cutie Pie", "Hannah", "Brook", "Misty", "Ocean"];
+	private var surNames:Array<String> = ["Stark", "Jones", "Waterman", "Seaworth", "Styles", "Olsen", "Kent", "the Rocket", "McGee", "Banner", "Blake", "Conway", "Irving", "Thames", "Trent", "Wade"];
 	
 	private var name:String;
+	private var state:String;
 	private var rating:Int;
 	private var imageName:String;
 	private var masterStamina:Int;
@@ -28,6 +29,7 @@ class Manatee
 	private var masterSleepiness:Int;
 	private var currentSleepiness:Int;
 	private var distTravelled:Float;
+	private var odds:Int;
 	
 	private function initVars():Void
 	{
@@ -43,7 +45,9 @@ class Manatee
 		currentStamina = newStamina();
 		currentSleepiness = newSleepiness();
 		
+		state = "SWIM";
 		distTravelled = 0;
+		odds = 0;
 	}
 	
 	private function newStamina():Int
@@ -61,9 +65,11 @@ class Manatee
 		if (currentStamina > 0 ) {
 			distTravelled++;
 			currentStamina--;
+			state = "SWIM";
 		}
 		if (currentStamina == 0) {
 			currentSleepiness--;
+			state = "SLEEP";
 		}
 		if (currentSleepiness == 0) {
 			currentStamina = newStamina();
@@ -74,6 +80,9 @@ class Manatee
 	public function reset():Void
 	{
 		distTravelled = 0;
+		newStamina();
+		newSleepiness();
+		odds = 0;
 	}
 	
 	public function feed():Void
@@ -89,6 +98,9 @@ class Manatee
 	//accessors
 	public function distanceTravelled():Float { return distTravelled; }
 	public function getName():String { return name; }
+	public function getState():String { return state; }
+	public function setOdds(odds:Int):Void { this.odds = odds; }
+	public function getOdds():Int { return odds; }
 	public function getImageName():String { return imageName; }
 	public function getRating():Int { return rating; }
 }
